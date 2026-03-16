@@ -1,53 +1,135 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Reveal Animation
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+/* ═══════════════════════════════════════════════════════════
+   APOLLO-INSPIRED PORTFOLIO — SCRIPT.JS
+   Star field, scroll reveals, smooth scroll, scroll-to-top
+   ═══════════════════════════════════════════════════════════ */
 
-    const observer = new IntersectionObserver((entries, observer) => {
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ─── Star Field Background ──────────────────────────────
+    const canvas = document.getElementById('starsCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const NUM_STARS = 200;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function createStars() {
+        stars = [];
+        for (let i = 0; i < NUM_STARS; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.3,
+                alpha: Math.random() * 0.6 + 0.1,
+                speed: Math.random() * 0.3 + 0.05,
+                drift: (Math.random() - 0.5) * 0.15,
+            });
+        }
+    }
+
+    function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+            ctx.fill();
+
+            // Move stars
+            star.y += star.speed;
+            star.x += star.drift;
+
+            // Twinkle
+            star.alpha += (Math.random() - 0.5) * 0.02;
+            star.alpha = Math.max(0.05, Math.min(0.7, star.alpha));
+
+            // Wrap around
+            if (star.y > canvas.height) {
+                star.y = 0;
+                star.x = Math.random() * canvas.width;
+            }
+            if (star.x < 0) star.x = canvas.width;
+            if (star.x > canvas.width) star.x = 0;
+        });
+        requestAnimationFrame(drawStars);
+    }
+
+    resizeCanvas();
+    createStars();
+    drawStars();
+    window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
+
+
+    // ─── Scroll Reveal Animation ────────────────────────────
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
+                const delay = entry.target.dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, parseInt(delay));
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    // Apply animation to all bento cards and project cards
-    const animatedElements = document.querySelectorAll('.bento-card');
-    
-    animatedElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) ${index * 0.1}s`;
-        observer.observe(el);
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 
-    // Smooth Scrolling for anchor links
+    revealElements.forEach(el => revealObserver.observe(el));
+
+
+    // ─── Smooth Scrolling for Anchor Links ──────────────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
+            const targetId = anchor.getAttribute('href');
             if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
-    // Active Nav Link highlighting
-    const navLinks = document.querySelectorAll('.nav-btn:not(.contact-btn)');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
+
+    // ─── Scroll to Top Button ───────────────────────────────
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    }
+
+
+    // ─── Navbar Scroll Effect ───────────────────────────────
+    const navbar = document.getElementById('navbar');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > 100) {
+            navbar.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+        } else {
+            navbar.style.borderBottomColor = 'rgba(255,255,255,0.06)';
+        }
+        lastScrollY = currentScrollY;
     });
+
+    // ─── Stagger project cards ──────────────────────────────
+    const projectCards = document.querySelectorAll('.project-card.reveal');
+    projectCards.forEach((card, i) => {
+        card.dataset.delay = (i * 150).toString();
+    });
+
+    const resumeCards = document.querySelectorAll('.resume-card.reveal');
+    resumeCards.forEach((card, i) => {
+        card.dataset.delay = (i * 150).toString();
+    });
+
 });
