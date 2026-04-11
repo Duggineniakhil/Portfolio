@@ -17,7 +17,7 @@ Welcome to my **Premium Portfolio Website**! This site showcases my journey as a
 ## Live Preview
 
 Check out the live preview here:  
-[**Live Demo**](https://codervai.vercel.app/)
+[**Live Demo**](https://portfolio-qz5w.vercel.app/)
 
 ---
 
