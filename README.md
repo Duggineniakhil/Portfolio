@@ -34,7 +34,7 @@ Check out the live preview here:
 - **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (using the new Vite plugin setup)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/)
-- **Graphics**: [Three.js](https://threejs.org/), [OGL](https://github.com/o-gl/ogl)
+- **Graphics**: [OGL](https://github.com/o-gl/ogl)
 - **Icons**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
 - **Smooth Scroll**: [Lenis](https://lenis.darkroom.engineering/)
 

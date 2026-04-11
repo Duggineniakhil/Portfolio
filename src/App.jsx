@@ -9,7 +9,6 @@ import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
 import CertificationsSection from "./pages/Certifications/Certifications";
 import SoftAurora from "./components/ui/SoftAurora";
-import Antigravity from "./components/ui/Antigravity";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -36,25 +35,6 @@ export default function App() {
             colorSpeed={1}
             enableMouseInteraction
             mouseInfluence={0.5}
-          />
-        </div>
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          <Antigravity
-            count={250}
-            magnetRadius={8}
-            ringRadius={8}
-            waveSpeed={0.5}
-            waveAmplitude={1.5}
-            particleSize={1.5}
-            lerpSpeed={0.05}
-            color="#00ffff"
-            autoAnimate
-            particleVariance={1.5}
-            rotationSpeed={0.5}
-            depthFactor={1}
-            pulseSpeed={3}
-            particleShape="capsule"
-            fieldStrength={10}
           />
         </div>
       </div>
