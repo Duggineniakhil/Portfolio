@@ -34,11 +34,38 @@ const projects = [
   {
     title: "Bus Reservation System",
     description: "Implemented seat booking and cancellation with core data structures (Linked Lists, Queues). Modular OOP architecture.",
-    src: "bus.jpg",
-    link: "https://ui-avatars.com/api/?name=Bus+System&background=111&color=fff&size=500",
+    src: "bus_reservation.png",
+    link: "/bus_reservation.png",
     color: "#e65c00",
     githubLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
     liveLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
+  },
+  {
+    title: "Vectra — Ride Booking App",
+    description: "Full-stack real-time ride-sharing application built with Flutter, Dart, and WebSockets for live driver tracking.",
+    src: "vectra.png",
+    link: "/vectra.png",
+    color: "#8a2be2",
+    githubLink: "https://github.com/Duggineniakhil/Vectra",
+    liveLink: "https://github.com/Duggineniakhil/Vectra",
+  },
+  {
+    title: "Taskflow — Task Manager",
+    description: "Responsive productivity and task management web app built with TypeScript, React, and modern frontend practices.",
+    src: "taskflow.png",
+    link: "/taskflow.png",
+    color: "#00b386",
+    githubLink: "https://github.com/Duggineniakhil/taskflow",
+    liveLink: "https://taskflow-kohl-beta.vercel.app",
+  },
+  {
+    title: "Oral Cancer Detection AI",
+    description: "Advanced deep learning system for Oral Cancer Detection utilizing ConvNeXt and MedSAM architectures.",
+    src: "oral_cancer.png",
+    link: "/oral_cancer.png",
+    color: "#cc0000",
+    githubLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
+    liveLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
   },
 ];
 
@@ -95,8 +122,8 @@ export default function Projects() {
 
   return (
     <ReactLenis root>
-      <main className="bg-black" ref={container}>
-        <section className="text-white w-full bg-slate-950">
+      <main className="bg-transparent" ref={container}>
+        <section className="text-white w-full bg-transparent">
           {projects.map((project, i) => {
             const targetScale = 1 - (projects.length - i) * 0.05;
             return (
