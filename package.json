@@ -12,7 +12,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@react-three/fiber": "^9.5.0",
+    "@react-three/fiber": "^8.15.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "create-react-router": "^7.8.2",
