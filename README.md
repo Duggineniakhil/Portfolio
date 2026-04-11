@@ -14,14 +14,14 @@ Welcome to my **Premium Portfolio Website**! This site showcases my journey as a
 
 ---
 
-## 🚀 Live Preview
+## Live Preview
 
 Check out the live preview here:  
 [**Live Demo**](https://codervai.vercel.app/)
 
 ---
 
-## ✨ Key Features
+## Key Features
 - **Cinematic Backgrounds**: Dynamic WebGL/OGL animations (SoftAurora) for a premium feel.
 - **Glassmorphism Design**: Modern, sleek UI components with subtle transparency and blur effects.
 - **Fully Responsive**: Optimized for all devices, from mobile to ultra-wide displays.
@@ -30,7 +30,7 @@ Check out the live preview here:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 - **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (using the new Vite plugin setup)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/)
@@ -40,7 +40,7 @@ Check out the live preview here:
 
 ---
 
-## 🎯 Project Structure
+## Project Structure
 ```bash
 portfolio/
 ├── public/                 # Static assets (project screenshots, etc.)
@@ -66,7 +66,7 @@ portfolio/
 
 ---
 
-## 💻 Installation & Setup
+## Installation & Setup
 
 You will need **Node.js** (v18+) and **Git** installed.
 
@@ -85,14 +85,12 @@ npm install
 ```bash
 npm run dev
 ```
-Navigate to `http://localhost:5173/` to see the result! 🎉
+Navigate to `http://localhost:5173/` to see the result!
 
 ---
 
-## 📝 License
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-<div align="center">
-  Made with ❤️ by Akhil Duggineni
-</div>
+  Made with by Akhil Duggineni
