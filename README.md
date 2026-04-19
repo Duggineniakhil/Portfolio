@@ -93,4 +93,4 @@ Navigate to `http://localhost:5173/` to see the result!
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-  Made with by Akhil Duggineni
+  Made by Akhil Duggineni
