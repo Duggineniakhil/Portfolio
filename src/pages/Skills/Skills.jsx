@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import IconCloudDemo from "@/components/globe";
-import { Code2, Paintbrush, Database, Layout, Cpu, Cloud } from "lucide-react";
+import { Code2, Paintbrush, Database, Cpu, Cloud } from "lucide-react";
 import {
   FaReact,
   FaNodeJs,
@@ -10,16 +10,13 @@ import {
   FaDocker,
   FaGitAlt,
   FaLinux,
-  FaFigma,
   FaAws,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
   SiTypescript,
   SiTailwindcss,
-  SiPostgresql,
   SiMongodb,
-  SiGraphql,
   SiJest,
   SiWebpack,
   SiRedux,
@@ -33,16 +30,15 @@ import { MdAnimation } from "react-icons/md";
 import { FcWorkflow } from "react-icons/fc";
 
 const SkillCard = ({ icon: Icon, title, skills, color }) => (
-  <Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(100,100,255,0.1)] to-transparent group-hover:via-[rgba(100,100,255,0.2)] animate-shimmer"></div>
+  <Card className="group relative overflow-hidden bg-zinc-900/40 border-zinc-800/50 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/30">
     <CardContent className="p-6 relative z-10">
       <div className="flex items-center gap-4 mb-6">
         <div
-          className={`p-3 rounded-xl bg-gray-800/50 ${color} group-hover:scale-110 transition-transform duration-300`}
+          className={`p-3 rounded-xl bg-zinc-800/50 ${color} group-hover:scale-110 transition-transform duration-300`}
         >
           <Icon className="w-8 h-8" />
         </div>
-        <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+        <h3 className="text-xl font-bold text-white font-mono uppercase tracking-tight">
           {title}
         </h3>
       </div>
@@ -51,12 +47,10 @@ const SkillCard = ({ icon: Icon, title, skills, color }) => (
           <Badge
             key={index}
             variant="outline"
-            className="group/badge relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-2 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+            className="bg-zinc-800/30 hover:bg-zinc-800/80 text-zinc-400 hover:text-white border-zinc-800 flex items-center gap-2 py-1.5 px-3 transition-all duration-300 font-mono text-[10px] uppercase font-bold tracking-wider"
           >
-            <span className="transform group-hover/badge:scale-110 transition-transform duration-300">
-              {skill.icon}
-            </span>
-            <span className="font-medium">{skill.name}</span>
+            <span>{skill.icon}</span>
+            <span>{skill.name}</span>
           </Badge>
         ))}
       </div>
@@ -68,162 +62,93 @@ const SkillsSection = () => {
   const skillCategories = [
     {
       icon: Code2,
-      title: "Frontend Development",
+      title: "Frontend",
       color: "text-blue-400",
       skills: [
-        { name: "React", icon: <FaReact className="w-4 h-4 text-[#61DAFB]" /> },
-        {
-          name: "Next.js",
-          icon: <SiNextdotjs className="w-4 h-4 text-white" />,
-        },
-        {
-          name: "TypeScript",
-          icon: <SiTypescript className="w-4 h-4 text-[#3178C6]" />,
-        },
-        {
-          name: "Tailwind CSS",
-          icon: <SiTailwindcss className="w-4 h-4 text-[#38B2AC]" />,
-        },
-        {
-          name: "HTML5",
-          icon: <BsFileEarmarkCode className="w-4 h-4 text-[#E34F26]" />,
-        },
-        {
-          name: "CSS3",
-          icon: <BsFileEarmarkCode className="w-4 h-4 text-[#1572B6]" />,
-        },
+        { name: "React", icon: <FaReact /> },
+        { name: "Next.js", icon: <SiNextdotjs /> },
+        { name: "TypeScript", icon: <SiTypescript /> },
+        { name: "Tailwind", icon: <SiTailwindcss /> },
+        { name: "HTML5", icon: <BsFileEarmarkCode /> },
+        { name: "CSS3", icon: <BsFileEarmarkCode /> },
       ],
     },
     {
       icon: Database,
-      title: "Backend Development",
+      title: "Backend",
       color: "text-green-400",
       skills: [
-        {
-          name: "Node.js",
-          icon: <FaNodeJs className="w-4 h-4 text-[#339933]" />,
-        },
-        {
-          name: "Python",
-          icon: <FaPython className="w-4 h-4 text-[#3776AB]" />,
-        },
-        {
-          name: "Express.js",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#ffffff]" />,
-        },
-        {
-          name: "FastAPI",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#009688]" />,
-        },
-        {
-          name: "REST APIs",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#FF6C37]" />,
-        },
-        {
-          name: "MongoDB",
-          icon: <SiMongodb className="w-4 h-4 text-[#47A248]" />,
-        },
+        { name: "Node.js", icon: <FaNodeJs /> },
+        { name: "Python", icon: <FaPython /> },
+        { name: "Express", icon: <BsGrid1X2 /> },
+        { name: "FastAPI", icon: <BsGrid1X2 /> },
+        { name: "MongoDB", icon: <SiMongodb /> },
       ],
     },
     {
       icon: Cpu,
-      title: "AI & Machine Learning",
+      title: "AI & ML",
       color: "text-purple-400",
       skills: [
-        {
-          name: "TensorFlow",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#FF6F00]" />,
-        },
-        {
-          name: "Computer Vision",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#38B2AC]" />,
-        },
-        {
-          name: "CNNs",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#9CA3AF]" />,
-        },
-        {
-          name: "Data Science",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#F59E0B]" />,
-        },
+        { name: "TensorFlow", icon: <BsGrid1X2 /> },
+        { name: "CV", icon: <BsGrid1X2 /> },
+        { name: "CNNs", icon: <BsGrid1X2 /> },
+        { name: "Data Science", icon: <BsGrid1X2 /> },
       ],
     },
     {
       icon: Cloud,
-      title: "Cloud & DevOps",
+      title: "DevOps",
       color: "text-orange-400",
       skills: [
-        { name: "AWS", icon: <FaAws className="w-4 h-4 text-[#FF9900]" /> },
-        {
-          name: "Docker",
-          icon: <FaDocker className="w-4 h-4 text-[#2496ED]" />,
-        },
-        { name: "CI/CD", icon: <FcWorkflow className="w-4 h-4" /> },
-        {
-          name: "Kubernetes",
-          icon: <BsGrid1X2 className="w-4 h-4 text-[#326CE5]" />,
-        },
-        { name: "Git", icon: <FaGitAlt className="w-4 h-4 text-[#F05032]" /> },
-        { name: "Linux", icon: <FaLinux className="w-4 h-4 text-[#FCC624]" /> },
+        { name: "AWS", icon: <FaAws /> },
+        { name: "Docker", icon: <FaDocker /> },
+        { name: "CI/CD", icon: <FcWorkflow /> },
+        { name: "Git", icon: <FaGitAlt /> },
+        { name: "Linux", icon: <FaLinux /> },
       ],
     },
     {
       icon: Cpu,
-      title: "Tools & Technologies",
+      title: "Tools",
       color: "text-pink-400",
       skills: [
-        {
-          name: "VS Code",
-          icon: <TbBrandVscode className="w-4 h-4 text-[#007ACC]" />,
-        },
-        { name: "Jest", icon: <SiJest className="w-4 h-4 text-[#C21325]" /> },
-        {
-          name: "Webpack",
-          icon: <SiWebpack className="w-4 h-4 text-[#8DD6F9]" />,
-        },
-        { name: "Redux", icon: <SiRedux className="w-4 h-4 text-[#764ABC]" /> },
-        {
-          name: "Firebase",
-          icon: <SiFirebase className="w-4 h-4 text-[#FFCA28]" />,
-        },
-        { name: "Vercel", icon: <SiVercel className="w-4 h-4 text-white" /> },
-        { name: "Vite", icon: <SiVite className="w-4 h-4 text-[#646CFF]" /> },
+        { name: "VS Code", icon: <TbBrandVscode /> },
+        { name: "Jest", icon: <SiJest /> },
+        { name: "Redux", icon: <SiRedux /> },
+        { name: "Firebase", icon: <SiFirebase /> },
+        { name: "Vercel", icon: <SiVercel /> },
+        { name: "Vite", icon: <SiVite /> },
       ],
     },
     {
       icon: Paintbrush,
-      title: "Creative Skills",
+      title: "Creative",
       color: "text-yellow-400",
       skills: [
-        {
-          name: "UI Animation",
-          icon: <MdAnimation className="w-4 h-4 text-[#FF4081]" />,
-        },
-        {
-          name: "SVG Animation",
-          icon: <MdAnimation className="w-4 h-4 text-[#00C853]" />,
-        },
-        {
-          name: "3D Modeling",
-          icon: <Cpu className="w-4 h-4 text-[#7C4DFF]" />,
-        },
-        {
-          name: "Motion Graphics",
-          icon: <MdAnimation className="w-4 h-4 text-[#FF6D00]" />,
-        },
+        { name: "UI Animation", icon: <MdAnimation /> },
+        { name: "SVG Anim", icon: <MdAnimation /> },
+        { name: "Motion", icon: <MdAnimation /> },
       ],
     },
   ];
 
   return (
-    <main className="pt-15 lg:pt-0 text-white min-h-screen bg-transparent relative">
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+    <main className="pt-24 pb-12 text-white min-h-screen bg-transparent relative">
+      <div className="absolute inset-0 dot-grid opacity-10 pointer-events-none"></div>
 
-      <section className="container mx-auto px-4 py-11 relative z-10">
-        <div className="flex justify-center items-center ">
+      <section className="container mx-auto px-6 relative z-10">
+        <div className="mb-20 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-mono">
+            /Skills<span className="text-cyan-400">_</span>
+          </h2>
+          <p className="text-zinc-500 font-mono">Technologies I work with.</p>
+        </div>
+
+        <div className="flex justify-center items-center mb-20">
           <IconCloudDemo />
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <SkillCard
@@ -236,32 +161,6 @@ const SkillsSection = () => {
           ))}
         </div>
       </section>
-      <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
-        .bg-grid-pattern {
-          background-image: linear-gradient(
-              to right,
-              rgba(100, 100, 255, 0.1) 1px,
-              transparent 1px
-            ),
-            linear-gradient(
-              to bottom,
-              rgba(100, 100, 255, 0.1) 1px,
-              transparent 1px
-            );
-          background-size: 30px 30px;
-        }
-      `}</style>
     </main>
   );
 };

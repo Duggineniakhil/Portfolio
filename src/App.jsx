@@ -8,7 +8,6 @@ import Hero from "./pages/Hero/Hero";
 import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
 import CertificationsSection from "./pages/Certifications/Certifications";
-import SoftAurora from "./components/ui/SoftAurora";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -17,25 +16,10 @@ export default function App() {
 
   return (
     <>
-      <div className="fixed inset-0 z-[-100] pointer-events-none bg-[#04081a]">
-        <div className="absolute inset-0 z-0">
-          <SoftAurora
-            speed={0.6}
-            scale={1.2}
-            brightness={0.9}
-            color1="#04081a"
-            color2="#38bdf8"
-            noiseFrequency={2.0}
-            noiseAmplitude={1.0}
-            bandHeight={0.5}
-            bandSpread={1.2}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction={false}
-            mouseInfluence={0}
-          />
-        </div>
+      <div className="fixed inset-0 z-[-100] bg-[#0b1121] dot-grid opacity-10"></div>
+      <div className="fixed inset-0 z-[-100] pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/5 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-0">

@@ -1,188 +1,148 @@
-import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { EvervaultCard } from "@/components/ui/evervault-card";
-import { cn } from "@/lib/utils";
+import React from "react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "HealthAI — Chest X-Ray Detection",
-    description: "Deep learning system for multi-label chest disease detection from X-ray images using EfficientNetB0.",
+    title: "HealthAI",
+    category: "AI / DEEP LEARNING",
+    description: "Built an end-to-end deep learning system for multi-label chest disease detection from X-ray images using EfficientNetB0.",
     src: "health_ai.png",
-    color: "#00c6ff",
+    tags: ["EfficientNetB0", "TensorFlow", "FastAPI"],
     githubLink: "https://github.com/Duggineniakhil/HealthAI",
     liveLink: "https://github.com/Duggineniakhil/HealthAI",
-    className: "md:col-span-2 md:row-span-2",
   },
   {
-    title: "Stock Dashboard App",
-    description: "Full-stack stock tracking with real-time prices and email alerts.",
+    title: "Stock Dashboard",
+    category: "WEB APP",
+    description: "Full-stack stock tracking web application with authentication, watchlists, real-time prices, and email alerts.",
     src: "stock_dashboard.png",
-    color: "#00b09b",
+    tags: ["React", "Node.js", "MongoDB", "Auth0"],
     githubLink: "https://github.com/Duggineniakhil/StockTracker",
     liveLink: "https://stock-tracker-1-sj4n.onrender.com",
-    className: "md:col-span-1 md:row-span-1",
   },
   {
-    title: "DAC Shoes — E-Commerce",
-    description: "Responsive e-commerce store with mobile-first UI.",
+    title: "DAC Shoes",
+    category: "E-COMMERCE",
+    description: "Built a responsive multi-page e-commerce website with core shopping flows, mobile-first UI, and cart logic.",
     src: "dac_shoes.png",
-    color: "#ff512f",
+    tags: ["HTML5", "CSS3", "JavaScript"],
     githubLink: "https://github.com/Duggineniakhil/E-commerece-ShoeStore",
     liveLink: "https://dacshoestore.netlify.app",
-    className: "md:col-span-1 md:row-span-1",
   },
   {
-    title: "Vectra — Ride Booking",
-    description: "Real-time ride-sharing application with live driver tracking.",
+    title: "Vectra",
+    category: "MOBILE APP",
+    description: "Full-stack real-time ride-sharing application built with Flutter, Dart, and WebSockets for live driver tracking.",
     src: "vectra.png",
-    color: "#8a2be2",
+    tags: ["Flutter", "Dart", "WebSockets", "Firebase"],
     githubLink: "https://github.com/Duggineniakhil/Vectra",
     liveLink: "https://github.com/Duggineniakhil/Vectra",
-    className: "md:col-span-1 md:row-span-2",
   },
   {
-    title: "Oral Cancer Detection AI",
-    description: "MedSAM and ConvNeXt for advanced oral cancer detection.",
+    title: "Oral Cancer AI",
+    category: "MED AI",
+    description: "Advanced deep learning system for Oral Cancer Detection utilizing ConvNeXt and MedSAM architectures.",
     src: "oral_cancer.png",
-    color: "#cc0000",
+    tags: ["ConvNeXt", "MedSAM", "PyTorch"],
     githubLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
     liveLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
-    className: "md:col-span-2 md:row-span-1",
   },
   {
-    title: "Taskflow — Task Manager",
-    description: "Productivity app built with TypeScript and React.",
+    title: "Taskflow",
+    category: "PRODUCTIVITY",
+    description: "Responsive productivity and task management web app built with TypeScript, React, and modern frontend practices.",
     src: "taskflow.png",
-    color: "#00b386",
+    tags: ["TypeScript", "React", "TailwindCSS"],
     githubLink: "https://github.com/Duggineniakhil/taskflow",
     liveLink: "https://taskflow-kohl-beta.vercel.app",
-    className: "md:col-span-1 md:row-span-1",
-  },
-  {
-    title: "Bus Reservation System",
-    description: "Core DSA implementation for booking and cancellation.",
-    src: "bus_reservation.png",
-    color: "#e65c00",
-    githubLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
-    liveLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
-    className: "md:col-span-1 md:row-span-1",
   },
 ];
 
 export default function Projects() {
   return (
-    <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Featured <span className="gradient-text">Projects</span>
+    <section id="projects" className="py-24 px-4 bg-transparent relative">
+      <div className="absolute inset-0 dot-grid opacity-10 pointer-events-none"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-mono">
+            /Projects<span className="text-cyan-400">_</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A collection of my recent work, ranging from AI/ML systems to full-stack web applications.
-          </p>
+          <p className="text-zinc-500 font-mono">Some things I&apos;ve built.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, i) => (
-            <ProjectCard key={i} project={project} />
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group flex flex-col bg-zinc-900/40 border border-zinc-800/50 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-all duration-300"
+            >
+              {/* Image Container */}
+              <div className="relative h-48 overflow-hidden bg-zinc-800">
+                <img
+                  src={project.src}
+                  alt={project.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100"
+                />
+                <div className="absolute inset-0 bg-cyan-900/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </div>
+
+              {/* Content Container */}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="text-[10px] font-bold text-cyan-400 tracking-[0.2em] mb-2 uppercase font-mono">
+                  {project.category}
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors font-mono">
+                  {project.title}
+                </h3>
+                <p className="text-zinc-400 text-sm mb-6 flex-grow leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag, j) => (
+                    <span
+                      key={j}
+                      className="px-2 py-1 rounded text-[10px] font-mono font-bold bg-zinc-800/50 text-zinc-500 border border-zinc-700/50"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex items-center gap-4 pt-4 border-t border-zinc-800/50">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-500 hover:text-white transition-colors"
+                  >
+                    <i className="fab fa-github text-lg"></i>
+                  </a>
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-500 hover:text-white transition-colors"
+                  >
+                    <i className="fas fa-external-link-alt text-lg"></i>
+                  </a>
+                  <div className="flex-grow"></div>
+                  <span className="text-[10px] font-mono font-bold text-zinc-600 group-hover:text-cyan-400 transition-colors">
+                    READ MORE →
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </div>
-  );
-}
-
-function ProjectCard({ project }) {
-  const cardRef = useRef(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), { stiffness: 100, damping: 30 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 100, damping: 30 });
-
-  function onMouseMove(e) {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  }
-
-  function onMouseLeave() {
-    mouseX.set(0);
-    mouseY.set(0);
-  }
-
-  return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className={cn(
-        "relative group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-3xl overflow-hidden",
-        project.className
-      )}
-    >
-      <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity">
-        <EvervaultCard text="" className="scale-150" />
-      </div>
-
-      <div className="relative z-10 h-full p-6 flex flex-col justify-between" style={{ transform: "translateZ(50px)" }}>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-             <div 
-              className="w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-800/50 border border-zinc-700/50"
-              style={{ color: project.color }}
-            >
-              <i className="fas fa-project-diagram text-xl"></i>
-            </div>
-            <div className="flex gap-3">
-              <a 
-                href={project.githubLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-zinc-800/80 flex items-center justify-center text-white hover:bg-zinc-700 transition-colors"
-              >
-                <i className="fab fa-github"></i>
-              </a>
-              <a 
-                href={project.liveLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-zinc-800/80 flex items-center justify-center text-white hover:bg-zinc-700 transition-colors"
-              >
-                <i className="fas fa-external-link-alt text-sm"></i>
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
-              {project.title}
-            </h3>
-            <p className="text-gray-400 text-sm md:text-base mt-2 line-clamp-3">
-              {project.description}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 overflow-hidden rounded-2xl border border-zinc-800/50">
-          <img 
-            src={project.src} 
-            alt={project.title}
-            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-60 group-hover:opacity-100"
-          />
-        </div>
-      </div>
-      
-      {/* Glow Effect */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-    </motion.div>
+    </section>
   );
 }
