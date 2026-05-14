@@ -1,317 +1,188 @@
-import { ReactLenis } from "lenis/react";
-import { useTransform, motion, useScroll } from "framer-motion";
-import { useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { EvervaultCard } from "@/components/ui/evervault-card";
+import { cn } from "@/lib/utils";
 
 const projects = [
   {
-    title: "HealthAI — Chest X-Ray Disease Detection",
-    description: "Built an end-to-end deep learning system for multi-label chest disease detection from X-ray images using EfficientNetB0.",
+    title: "HealthAI — Chest X-Ray Detection",
+    description: "Deep learning system for multi-label chest disease detection from X-ray images using EfficientNetB0.",
     src: "health_ai.png",
-    link: "/health_ai.png",
     color: "#00c6ff",
     githubLink: "https://github.com/Duggineniakhil/HealthAI",
     liveLink: "https://github.com/Duggineniakhil/HealthAI",
+    className: "md:col-span-2 md:row-span-2",
   },
   {
-    title: "Stock Dashboard Application",
-    description: "Built a full-stack stock tracking web application with authentication, watchlists, real-time prices, and email alerts.",
+    title: "Stock Dashboard App",
+    description: "Full-stack stock tracking with real-time prices and email alerts.",
     src: "stock_dashboard.png",
-    link: "/stock_dashboard.png",
     color: "#00b09b",
     githubLink: "https://github.com/Duggineniakhil/StockTracker",
     liveLink: "https://stock-tracker-1-sj4n.onrender.com",
+    className: "md:col-span-1 md:row-span-1",
   },
   {
-    title: "DAC Shoes — E-Commerce Store",
-    description: "Built a responsive multi-page e-commerce website with core shopping flows, mobile-first UI, and cart logic.",
+    title: "DAC Shoes — E-Commerce",
+    description: "Responsive e-commerce store with mobile-first UI.",
     src: "dac_shoes.png",
-    link: "/dac_shoes.png",
     color: "#ff512f",
     githubLink: "https://github.com/Duggineniakhil/E-commerece-ShoeStore",
     liveLink: "https://dacshoestore.netlify.app",
+    className: "md:col-span-1 md:row-span-1",
   },
   {
-    title: "Bus Reservation System",
-    description: "Implemented seat booking and cancellation with core data structures (Linked Lists, Queues). Modular OOP architecture.",
-    src: "bus_reservation.png",
-    link: "/bus_reservation.png",
-    color: "#e65c00",
-    githubLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
-    liveLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
-  },
-  {
-    title: "Vectra — Ride Booking App",
-    description: "Full-stack real-time ride-sharing application built with Flutter, Dart, and WebSockets for live driver tracking.",
+    title: "Vectra — Ride Booking",
+    description: "Real-time ride-sharing application with live driver tracking.",
     src: "vectra.png",
-    link: "/vectra.png",
     color: "#8a2be2",
     githubLink: "https://github.com/Duggineniakhil/Vectra",
     liveLink: "https://github.com/Duggineniakhil/Vectra",
-  },
-  {
-    title: "Taskflow — Task Manager",
-    description: "Responsive productivity and task management web app built with TypeScript, React, and modern frontend practices.",
-    src: "taskflow.png",
-    link: "/taskflow.png",
-    color: "#00b386",
-    githubLink: "https://github.com/Duggineniakhil/taskflow",
-    liveLink: "https://taskflow-kohl-beta.vercel.app",
+    className: "md:col-span-1 md:row-span-2",
   },
   {
     title: "Oral Cancer Detection AI",
-    description: "Advanced deep learning system for Oral Cancer Detection utilizing ConvNeXt and MedSAM architectures.",
+    description: "MedSAM and ConvNeXt for advanced oral cancer detection.",
     src: "oral_cancer.png",
-    link: "/oral_cancer.png",
     color: "#cc0000",
     githubLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
     liveLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
+    className: "md:col-span-2 md:row-span-1",
+  },
+  {
+    title: "Taskflow — Task Manager",
+    description: "Productivity app built with TypeScript and React.",
+    src: "taskflow.png",
+    color: "#00b386",
+    githubLink: "https://github.com/Duggineniakhil/taskflow",
+    liveLink: "https://taskflow-kohl-beta.vercel.app",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Bus Reservation System",
+    description: "Core DSA implementation for booking and cancellation.",
+    src: "bus_reservation.png",
+    color: "#e65c00",
+    githubLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
+    liveLink: "https://github.com/Duggineniakhil/BUS-RESERVATION-SYSYTEM",
+    className: "md:col-span-1 md:row-span-1",
   },
 ];
 
 export default function Projects() {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    // Add specific styles for 1366x768 resolution
-    const style = document.createElement("style");
-    style.textContent = `
-      @media screen and (width: 1366px) and (height: 768px),
-             screen and (width: 1367px) and (height: 768px),
-             screen and (width: 1368px) and (height: 769px) {
-        .project-card {
-          scale: 0.85;
-          margin-top: -5vh;
-        }
-        .project-container {
-          height: 90vh;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Resolution check function
-    const checkResolution = () => {
-      const isTargetResolution =
-        window.innerWidth >= 1360 &&
-        window.innerWidth <= 1370 &&
-        window.innerHeight >= 760 &&
-        window.innerHeight <= 775;
-
-      if (isTargetResolution) {
-        document.documentElement.style.setProperty("--project-scale", "0.85");
-        document.documentElement.style.setProperty("--project-margin", "-5vh");
-      } else {
-        document.documentElement.style.setProperty("--project-scale", "1");
-        document.documentElement.style.setProperty("--project-margin", "0");
-      }
-    };
-
-    checkResolution();
-    window.addEventListener("resize", checkResolution);
-
-    return () => {
-      document.head.removeChild(style);
-      window.removeEventListener("resize", checkResolution);
-    };
-  }, []);
-
   return (
-    <ReactLenis root>
-      <main className="bg-transparent" ref={container}>
-        <section className="text-white w-full bg-transparent">
-          {projects.map((project, i) => {
-            const targetScale = 1 - (projects.length - i) * 0.05;
-            return (
-              <Card
-                key={`p_${i}`}
-                i={i}
-                url={project.link}
-                title={project.title}
-                color={project.color}
-                description={project.description}
-                progress={scrollYProgress}
-                range={[i * 0.25, 1]}
-                targetScale={targetScale}
-                githubLink={project.githubLink}
-                liveLink={project.liveLink}
-              />
-            );
-          })}
-        </section>
-      </main>
-    </ReactLenis>
-  );
-}
-
-function Card({
-  i,
-  title,
-  description,
-  url,
-  color,
-  progress,
-  range,
-  targetScale,
-  githubLink,
-  liveLink,
-}) {
-  const container = useRef(null);
-  const scale = useTransform(progress, range, [1, targetScale]);
-
-  return (
-    <div
-      ref={container}
-      className="h-screen flex items-center justify-center sticky top-0 project-container"
-    >
-      <motion.div
-        style={{
-          scale,
-          top: `calc(-5vh + ${i * 25}px)`,
-          transform: `scale(var(--project-scale, 1))`,
-          marginTop: "var(--project-margin, 0)",
-        }}
-        className="relative -top-[25%] h-auto w-[90%] md:w-[85%] lg:w-[75%] xl:w-[65%] origin-top project-card"
-        whileHover={{
-          y: -8,
-          transition: { duration: 0.3 },
-        }}
-      >
-        {/* Modern split card design */}
-        <div className="w-full flex flex-col md:flex-row bg-zinc-900 rounded-2xl overflow-hidden shadow-xl">
-          {/* Image section - full width on mobile, 55% on desktop */}
-          <div className="w-full md:w-[55%] h-[250px] md:h-[400px] lg:h-[450px] relative overflow-hidden">
-            <motion.img
-              src={url}
-              alt={title}
-              className="w-full h-full object-cover"
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-            />
-
-            {/* Colored overlay on hover */}
-            <motion.div
-              className="absolute inset-0"
-              style={{ backgroundColor: color, mixBlendMode: "overlay" }}
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0.3 }}
-              transition={{ duration: 0.3 }}
-            />
-
-            {/* Project number */}
-            <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-black/50 backdrop-blur-md text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium">
-              Project {i + 1}
-            </div>
-          </div>
-
-          {/* Content section - full width on mobile, 45% on desktop */}
-          <div className="w-full md:w-[45%] p-6 md:p-8 lg:p-10 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-4 md:mb-6">
-                <div
-                  className="w-2 h-2 md:w-3 md:h-3 rounded-full"
-                  style={{ backgroundColor: color }}
-                />
-                <div className="h-[1px] w-12 md:w-20 bg-gray-600" />
-              </div>
-
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-4">
-                {title}
-              </h2>
-              <p className="text-sm md:text-base text-gray-400 leading-relaxed line-clamp-3 md:line-clamp-none max-w-md">
-                {description}
-              </p>
-            </div>
-
-            <div className="mt-4 md:mt-auto pt-4">
-              <div className="w-full h-[1px] bg-gray-800 mb-4 md:mb-6" />
-
-              <div className="flex items-center gap-4">
-                {/* GitHub Link */}
-                <motion.a
-                  href={githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                  </svg>
-                  <span
-                    className="text-xs md:text-sm font-medium"
-                    style={{ color }}
-                  >
-                    Code
-                  </span>
-                </motion.a>
-
-                {/* Live Link */}
-                <motion.a
-                  href={liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                  </svg>
-                  <span
-                    className="text-xs md:text-sm font-medium"
-                    style={{ color }}
-                  >
-                    Live
-                  </span>
-                </motion.a>
-              </div>
-            </div>
-          </div>
+    <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            Featured <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A collection of my recent work, ranging from AI/ML systems to full-stack web applications.
+          </p>
         </div>
-      </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+          {projects.map((project, i) => (
+            <ProjectCard key={i} project={project} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
-// Add PropTypes validation
-Card.propTypes = {
-  i: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  progress: PropTypes.object.isRequired,
-  range: PropTypes.array.isRequired,
-  targetScale: PropTypes.number.isRequired,
-  githubLink: PropTypes.string.isRequired,
-  liveLink: PropTypes.string.isRequired,
-};
+function ProjectCard({ project }) {
+  const cardRef = useRef(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), { stiffness: 100, damping: 30 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 100, damping: 30 });
+
+  function onMouseMove(e) {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  }
+
+  function onMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className={cn(
+        "relative group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-3xl overflow-hidden",
+        project.className
+      )}
+    >
+      <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity">
+        <EvervaultCard text="" className="scale-150" />
+      </div>
+
+      <div className="relative z-10 h-full p-6 flex flex-col justify-between" style={{ transform: "translateZ(50px)" }}>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+             <div 
+              className="w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-800/50 border border-zinc-700/50"
+              style={{ color: project.color }}
+            >
+              <i className="fas fa-project-diagram text-xl"></i>
+            </div>
+            <div className="flex gap-3">
+              <a 
+                href={project.githubLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-zinc-800/80 flex items-center justify-center text-white hover:bg-zinc-700 transition-colors"
+              >
+                <i className="fab fa-github"></i>
+              </a>
+              <a 
+                href={project.liveLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-zinc-800/80 flex items-center justify-center text-white hover:bg-zinc-700 transition-colors"
+              >
+                <i className="fas fa-external-link-alt text-sm"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-gray-400 text-sm md:text-base mt-2 line-clamp-3">
+              {project.description}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 overflow-hidden rounded-2xl border border-zinc-800/50">
+          <img 
+            src={project.src} 
+            alt={project.title}
+            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-60 group-hover:opacity-100"
+          />
+        </div>
+      </div>
+      
+      {/* Glow Effect */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+    </motion.div>
+  );
+}
