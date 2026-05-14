@@ -9,7 +9,6 @@ import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
 import CertificationsSection from "./pages/Certifications/Certifications";
 import SoftAurora from "./components/ui/SoftAurora";
-import SplashCursor from "./components/SplashCursor";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -18,8 +17,6 @@ export default function App() {
 
   return (
     <>
-      {/* Global Background Animation */}
-      <SplashCursor />
       <div className="fixed inset-0 z-[-100] pointer-events-none bg-[#04081a]">
         <div className="absolute inset-0 z-0">
           <SoftAurora
@@ -35,8 +32,8 @@ export default function App() {
             octaveDecay={0.1}
             layerOffset={0}
             colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0.5}
+            enableMouseInteraction={false}
+            mouseInfluence={0}
           />
         </div>
       </div>
