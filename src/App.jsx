@@ -8,7 +8,7 @@ import Hero from "./pages/Hero/Hero";
 import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
 import CertificationsSection from "./pages/Certifications/Certifications";
-import SoftAurora from "./components/ui/SoftAurora";
+import Galaxy from "./components/ui/Galaxy";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -17,27 +17,22 @@ export default function App() {
 
   return (
     <>
-      <div className="fixed inset-0 z-[-100] pointer-events-none bg-[#04081a]">
-        <div className="absolute inset-0 z-0">
-          <SoftAurora
-            speed={0.6}
-            scale={1.2}
-            brightness={0.9}
-            color1="#04081a"
-            color2="#38bdf8"
-            noiseFrequency={2.0}
-            noiseAmplitude={1.0}
-            bandHeight={0.5}
-            bandSpread={1.2}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction={false}
-            mouseInfluence={0}
-          />
-        </div>
+      <div className="fixed inset-0 z-[-1] pointer-events-none bg-black">
+        <Galaxy
+          mouseRepulsion
+          mouseInteraction
+          density={1}
+          glowIntensity={0.3}
+          saturation={0}
+          hueShift={0}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.1}
+          repulsionStrength={2}
+          autoCenterRepulsion={0}
+          starSpeed={0.5}
+          speed={1}
+        />
       </div>
-
       <div className="relative z-0">
         <Header />
         {/* Conditional Rendering */}

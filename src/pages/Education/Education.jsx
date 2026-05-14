@@ -60,13 +60,6 @@ const EducationSection = () => {
 
   return (
     <section className="min-h-screen relative overflow-hidden py-40 bg-transparent">
-      {/* Grid Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:50px_50px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#04081A] via-transparent to-[#04081A]" />
-        <div className="absolute inset-0 border border-white/[0.05] grid grid-cols-2 md:grid-cols-4" />
-      </div>
-
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
