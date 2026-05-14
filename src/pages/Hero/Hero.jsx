@@ -1,114 +1,303 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import Prism from "prismjs";
+import "prismjs/components/prism-javascript";
+import "@/assets/css/tomorrow.css";
+import Meteors from "@/components/ui/meteors";
+import PortfolioPage from "@/pages/About/About";
 import SparklesText from "@/components/ui/sparkles-text";
+import { FlipWords } from "@/components/ui/flip-words";
+
+// Grid Background - Replacing the HexagonBackground
+const GridBackground = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          className="absolute inset-0"
+        >
+          <pattern
+            id="grid"
+            width="40"
+            height="40"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect
+              width="40"
+              height="40"
+              fill="none"
+              stroke="white"
+              strokeWidth="0.5"
+              className="opacity-40 animate-gridPulse"
+            />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+    </div>
+  );
+};
 
 export default function Hero() {
-  const [cursorVisible, setCursorVisible] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCursorVisible((prev) => !prev);
-    }, 500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const socialLinks = [
-    { icon: "fab fa-github", url: "https://github.com/Duggineniakhil", label: "GitHub" },
-    { icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/akhil-duggineni-774431260/", label: "LinkedIn" },
-    { icon: "fab fa-twitter", url: "https://x.com/AkhilDuggineni", label: "Twitter" },
-    { icon: "fas fa-envelope", url: "mailto:akhilduggineni14@gmail.com", label: "Email" },
+  const words = [
+    "Full Stack Developer",
+    "AI / ML Enthusiast",
+    "Python Developer",
+    "React Developer",
   ];
 
-  return (
-    <main className="min-h-screen flex items-center justify-center relative overflow-hidden bg-transparent">
-      {/* Dot Grid Background */}
-      <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none"></div>
+  const [code] = useState(`
+const profile = {
+    name: 'Duggineni Akhil',
+    title: 'Full Stack Developer | AI/ML Enthusiast | Problem Solver',
+    skills: [
+        'Python', 'JavaScript', 'React.js', 'Node.js',
+        'Express.js', 'TensorFlow', 'HTML5', 'CSS3', 'REST APIs',
+        'FastAPI', 'Git', 'Machine Learning', 'Computer Vision'
+    ],
+    hardWorker: true,
+    quickLearner: true,
+    problemSolver: true,
+    yearsOfExperience: 2, 
+    hireable: function() {
+        return (
+            this.hardWorker &&
+            this.problemSolver &&
+            this.skills.length >= 5 &&
+            this.yearsOfExperience >= 3
+        );
+    }
+};
+  `);
+
+  useEffect(() => {
+    Prism.highlightAll();
+
+    // Add CSS animation for grid and dots
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes gridPulse {
+        0%, 100% { opacity: 0.1; }
+        50% { opacity: 0.3; }
+      }
       
-      {/* Decorative Blur */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+      @keyframes dotPulse {
+        0%, 100% { opacity: 0.2; transform: scale(0.8); }
+        50% { opacity: 0.5; transform: scale(1.2); }
+      }
+      
+      /* Media query for 1366x768 resolution */
+      @media screen and (width: 1366px) and (height: 768px), 
+             screen and (width: 1367px) and (height: 768px),
+             screen and (width: 1368px) and (height: 769px) {
+        .hero {
+          padding-top: 12rem !important;
+        }
+        .hero .container {
+          padding-top: 10rem !important;
+          margin-top: 5rem !important;
+        }
+        .hero-section-padding {
+          padding-top: 12rem !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
 
-      <div className="container mx-auto px-4 z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-3xl mx-auto"
+    // Apply extra padding for 1366x768 resolution
+    const checkResolution = () => {
+      const isTargetResolution =
+        window.innerWidth >= 1360 &&
+        window.innerWidth <= 1370 &&
+        window.innerHeight >= 760 &&
+        window.innerHeight <= 775;
+
+      if (isTargetResolution) {
+        document.documentElement.style.setProperty(
+          "--hero-padding-top",
+          "12rem"
+        );
+      } else {
+        document.documentElement.style.setProperty("--hero-padding-top", "0");
+      }
+    };
+
+    checkResolution();
+    window.addEventListener("resize", checkResolution);
+
+    return () => {
+      document.head.removeChild(style);
+      window.removeEventListener("resize", checkResolution);
+    };
+  }, [code]);
+
+  return (
+    <>
+      <main className="bg-transparent text-white min-h-screen">
+        <section
+          className="hero min-h-screen flex items-center justify-center relative px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-0 hero-section-padding"
+          style={{ paddingTop: "var(--hero-padding-top, 0)" }}
         >
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/50 border border-zinc-800 mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-            </span>
-            <span className="text-zinc-400 text-xs font-mono tracking-tight">Available for new opportunities</span>
+          <div className="absolute inset-0"></div>
+
+          {/* Choose one of these background options */}
+          <GridBackground />
+
+          {/* Or keep the original backgrounds if you prefer */}
+          {/* <HexagonBackground /> */}
+          {/* <AnimatedGrid /> */}
+          {/* <DotBackground /> */}
+
+          {/* Meteors Effect */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <Meteors number={10} />
           </div>
 
-          {/* Name Section */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-white font-mono">
-            <span className="text-cyan-400">D</span>uggineni <span className="text-cyan-400">A</span>khil
-            <span className={`${cursorVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100 text-cyan-400 ml-1`}>_</span>
-          </h1>
+          {/* Main content container */}
+          <div
+            className="container mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 py-8 md:py-10 lg:py-12 md:pt-28 xl:pt-28"
+            style={{
+              paddingTop:
+                window.innerWidth >= 1360 &&
+                window.innerWidth <= 1370 &&
+                window.innerHeight >= 760 &&
+                window.innerHeight <= 775
+                  ? "12rem"
+                  : "",
+            }}
+          >
+            {/* Left column - Text content */}
+            <div className="w-full lg:w-1/2 mb-12 lg:mb-0 animate__animated animate__fadeInLeft relative">
+              {/* Decorative blurs */}
+              <div className="absolute hidden lg:-top-20 lg:-left-20 lg:block w-48 h-48 lg:w-64 lg:h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+              <div className="absolute hidden lg:block lg:top-40 lg:-right-20 w-48 h-48 lg:w-64 lg:h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
 
-          {/* Role & Flags */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mb-8 text-zinc-400 font-mono text-lg">
-            <span>🇮🇳</span>
-            <span>Full Stack Developer</span>
-            <span className="text-zinc-700">•</span>
-            <span>AI / ML Enthusiast</span>
-            <span className="text-zinc-700">•</span>
-            <span>Problem Solver</span>
+              {/* Welcome badge */}
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-6 sm:mb-8 animate__animated animate__fadeInDown animate__delay-1s">
+                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
+                <span className="text-gray-300 text-xs sm:text-sm font-medium">
+                  Welcome to my universe
+                </span>
+              </div>
+
+              {/* Name section */}
+              <div className="relative mb-6 sm:mb-8">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
+                  <SparklesText text="Hello" />
+                  <span className="relative inline-block">
+                    I&apos;m
+                    <span className="typing-effect gradient-text">
+                      {" "}
+                      Duggineni Akhil
+                    </span>
+                  </span>
+                </h1>
+                <div className="absolute -z-10 top-1/2 -translate-y-1/2 left-1/4 w-24 sm:w-32 h-24 sm:h-32 bg-blue-500/20 rounded-full blur-2xl animate-pulse"></div>
+              </div>
+
+              {/* Role badge */}
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-6 sm:mb-8 backdrop-blur-sm animate__animated animate__fadeInUp animate__delay-1s">
+                <i className="fas fa-rocket text-blue-400 animate-bounce text-sm sm:text-base"></i>
+                <span>
+                  <FlipWords
+                    className={"text-lg sm:text-xl text-blue-400 font-medium"}
+                    words={words}
+                  />
+                </span>
+              </div>
+
+              {/* Description */}
+              <div className="relative mb-8 sm:mb-12 max-w-xl">
+                <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed">
+                  Passionate Full Stack Developer 🚀 | AI/ML Enthusiast 🔧 | Building
+                  intelligent systems and seamless web experiences 💻✨
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 animate__animated animate__fadeInUp animate__delay-2s">
+                {/* View Projects Button */}
+                <a
+                  href="https://github.com/Duggineniakhil"
+                  className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
+                >
+                  <span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-teal-400">
+                    <span className="relative flex items-center justify-center gap-2 text-white font-medium">
+                      <span>Learn More</span>
+                      <i className="fas fa-arrow-right transform transition-all duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </span>
+                </a>
+
+                {/* Contact Button */}
+                <a
+                  href="/Akhil_Duggineni_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center gap-3 p-0.5 rounded-xl bg-gradient-to-r from-gray-800 to-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
+                >
+                  <span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 border border-gray-700/50 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-gray-800 group-hover:to-gray-700">
+                    <span className="relative flex items-center justify-center gap-2 text-gray-300 font-medium group-hover:text-white">
+                      <span>Get Resume</span>
+                      <i className="fas fa-eye transform transition-all duration-300 group-hover:translate-y-1"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+
+              {/* Floating badges */}
+              <div className="hidden lg:block absolute left-[5.5rem] top-[2.3rem] animate-float-slow">
+                <div className="px-4 py-2 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 text-purple-400">
+                  <i className="fas fa-wand-magic-sparkles"></i>&nbsp;&nbsp;UI
+                  Magic
+                </div>
+              </div>
+              <div className="hidden lg:block absolute right-10 top-20 animate-float">
+                <div className="px-4 py-2 rounded-lg bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 text-blue-400">
+                  <i className="fas fa-code"></i>&nbsp;&nbsp;Clean Code
+                </div>
+              </div>
+              <div className="hidden lg:block absolute top-[17rem] left-[70%] transform -translate-x-1/2 animate-float">
+                <div className="px-4 py-2 rounded-lg bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 text-amber-400">
+                  <i className="fas fa-lightbulb"></i>&nbsp;&nbsp;Innovation
+                </div>
+              </div>
+            </div>
+
+            {/* Right column - Code window */}
+            <div className="w-full lg:w-1/2 animate__animated animate__fadeInDown animate__delay-0.1s">
+              <div className="gradient-border">
+                <div className="code-window bg-[#091121]">
+                  <div className="window-header">
+                    <div className="window-dot bg-red-500"></div>
+                    <div className="window-dot bg-yellow-500"></div>
+                    <div className="window-dot bg-green-500"></div>
+                    <span className="ml-2 text-sm text-gray-400 flex items-center gap-2">
+                      <i className="fas fa-code"></i>
+                      developer.js
+                    </span>
+                  </div>
+                  <pre className="language-javascript">
+                    <code className="language-javascript">{code}</code>
+                  </pre>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          {/* Description */}
-          <p className="text-zinc-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-            Building intelligent systems and seamless web experiences. 
-            Focused on crafting clean code and high-performance applications 🚀
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a
-              href="/Akhil_Duggineni_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-lg bg-white text-black font-bold hover:bg-cyan-400 hover:text-black transition-all duration-300 w-full sm:w-auto"
-            >
-              Resume
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-3 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-bold hover:border-cyan-400/50 transition-all duration-300 w-full sm:w-auto"
-            >
-              Contact Me
-            </a>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-6">
-            {socialLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-500 hover:text-cyan-400 text-2xl transition-colors duration-300"
-                aria-label={link.label}
-              >
-                <i className={link.icon}></i>
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Scroll Down Indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500"
-      >
-        <i className="fas fa-chevron-down text-xl"></i>
-      </motion.div>
-    </main>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center gap-2">
+          <span className="text-gray-400 text-sm flex items-center gap-2">
+            <i className="fas fa-mouse text-blue-400"></i>
+            About me
+          </span>
+          <i className="fas fa-chevron-down text-blue-400 text-xl"></i>
+        </div>
+        <PortfolioPage />
+      </main>
+    </>
   );
 }

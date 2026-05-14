@@ -1,91 +1,117 @@
 import React, { useState, useEffect } from "react";
+import {
+  FaHome,
+  FaLaptopCode,
+  FaUser,
+  FaBriefcase,
+  FaGraduationCap,
+  FaCode,
+  FaEnvelope,
+  FaBars,
+  FaCertificate,
+} from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Header() {
   const location = useLocation();
+  const [activeLink, setActiveLink] = useState(() => {
+    const path = location.pathname.substring(1) || "home";
+    return path;
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const navLinks = [
-    { name: "About", path: "/" },
-    { name: "Skills", path: "/skills" },
-    { name: "Experience", path: "/experience" },
-    { name: "Projects", path: "/projects" },
-    { name: "Education", path: "/education" },
-    { name: "Certifications", path: "/certifications" },
-    { name: "Contact", path: "/contact" },
+    { id: "home", icon: FaHome, text: "Home", path: "/" },
+    { id: "skills", icon: FaCode, text: "Skills", path: "/skills" },
+    {
+      id: "experience",
+      icon: FaBriefcase,
+      text: "Experience",
+      path: "/experience",
+    },
+    {
+      id: "education",
+      icon: FaGraduationCap,
+      text: "Education",
+      path: "/education",
+    },
+    { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
+    { id: "certifications", icon: FaCertificate, text: "Certifications", path: "/certifications" },
+    { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
   ];
 
   return (
-    <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50 py-3" : "bg-transparent py-5"
-      }`}
-    >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
-        <Link 
-          to="/" 
-          className="text-xl font-bold font-mono tracking-tighter text-white hover:text-cyan-400 transition-colors"
-        >
-          DA<span className="text-cyan-400">.</span>
-        </Link>
+    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
+      <div className="md:fixed md:top-4 md:left-1/2 md:transform md:-translate-x-1/2 w-full md:w-auto">
+        <div className="p-[2px] md:rounded-full bg-gradient-to-r from-emerald-400 via-cyan-500 to-indigo-500 animate-gradient-x">
+          <nav className="bg-gray-900/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
+            {/* Mobile Menu Button */}
+            <div className="flex justify-between items-center md:hidden px-2">
+              <Link to="/" className="text-white font-bold">Portfolio</Link>
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-white p-2"
+              >
+                <FaBars />
+              </button>
+            </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-xs font-mono font-bold uppercase tracking-widest transition-all duration-300 relative group ${
-                location.pathname === link.path ? "text-cyan-400" : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              {link.name}
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${
-                location.pathname === link.path ? "w-full" : "w-0 group-hover:w-full"
-              }`}></span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-zinc-400 hover:text-white text-xl"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <div className={`md:hidden fixed inset-0 bg-zinc-950 z-40 transition-transform duration-500 ${
-        isMenuOpen ? "translate-y-0" : "-translate-y-full"
-      }`}>
-        <div className="flex flex-col items-center justify-center h-full gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-2xl font-mono font-bold uppercase tracking-widest ${
-                location.pathname === link.path ? "text-cyan-400" : "text-zinc-400"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
+            {/* Navigation Links */}
+            <div className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+              <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-1 lg:gap-2 py-4 md:py-0">
+                {navLinks.map(({ id, icon: Icon, text, path }) => (
+                  <Link
+                    key={id}
+                    to={path}
+                    onClick={() => {
+                      setActiveLink(id);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
+                      transition-all duration-300 flex items-center gap-2
+                      hover:bg-white/10 
+                      ${
+                        activeLink === id
+                          ? "bg-white/15 text-white"
+                          : "text-gray-300 hover:text-white"
+                      }
+                    `}
+                  >
+                    <Icon
+                      className={`text-base ${
+                        activeLink === id ? "scale-110" : ""
+                      }`}
+                    />
+                    <span className="inline">{text}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
+
+      <style>{`
+        @keyframes gradient-x {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 3s linear infinite;
+          background-size: 200% 200%;
+        }
+      `}</style>
     </header>
   );
 }
