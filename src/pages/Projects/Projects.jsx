@@ -35,8 +35,8 @@ const projects = [
     description: "Full-stack real-time ride-sharing application built with Flutter, Dart, and WebSockets for live driver tracking.",
     src: "vectra.png",
     tags: ["Flutter", "Dart", "WebSockets", "Firebase"],
-    githubLink: "https://github.com/Duggineniakhil/Vectra",
-    liveLink: "https://github.com/Duggineniakhil/Vectra",
+    githubLink: "https://github.com/M-krizz/Vectra",
+    liveLink: "https://github.com/M-krizz/Vectra",
   },
   {
     title: "Oral Cancer AI",
