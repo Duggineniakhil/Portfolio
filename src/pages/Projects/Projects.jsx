@@ -61,6 +61,8 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="py-24 px-4 bg-transparent relative">
+      <div className="absolute inset-0 dot-grid opacity-10 pointer-events-none"></div>
+      
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-mono">
