@@ -10,4 +10,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ["ogl"],
+  },
+  build: {
+    commonjsOptions: {
+      include: [/ogl/, /node_modules/],
+    },
+  },
 });
