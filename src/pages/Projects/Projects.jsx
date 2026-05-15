@@ -133,10 +133,14 @@ export default function Projects() {
                   >
                     <i className="fas fa-external-link-alt text-lg"></i>
                   </a>
-                  <div className="flex-grow"></div>
-                  <span className="text-[10px] font-mono font-bold text-zinc-600 group-hover:text-cyan-400 transition-colors">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-mono font-bold text-zinc-600 group-hover:text-cyan-400 transition-colors hover:underline"
+                  >
                     READ MORE →
-                  </span>
+                  </a>
                 </div>
               </div>
             </motion.div>
