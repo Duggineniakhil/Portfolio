@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import Lenis from "lenis";
 import "./assets/css/index.css";
 import Experience from "./pages/Experience/Experience";
 import Contact from "./pages/Contact/Contact";
@@ -9,14 +10,38 @@ import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
 import CertificationsSection from "./pages/Certifications/Certifications";
 import SoftAurora from "./components/ui/SoftAurora";
-
-import { Route, Routes } from "react-router-dom";
+import CustomCursor from "./components/ui/CustomCursor";
 
 export default function App() {
-  const [isOnePage, setIsOnePage] = useState(false); // Toggle state
+  useEffect(() => {
+    // Initialize Lenis for smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   return (
     <>
+      <CustomCursor />
+      
       <div className="fixed inset-0 z-[-100] pointer-events-none bg-[#04081a]">
         <div className="absolute inset-0 z-0">
           <SoftAurora
@@ -32,37 +57,37 @@ export default function App() {
             octaveDecay={0.1}
             layerOffset={0}
             colorSpeed={1}
-            enableMouseInteraction={false}
-            mouseInfluence={0}
+            enableMouseInteraction={true} // Enabled mouse interaction
+            mouseInfluence={0.5}
           />
         </div>
       </div>
 
       <div className="relative z-0">
         <Header />
-        {/* Conditional Rendering */}
-        {isOnePage ? (
-          // One-Page Mode: Render all components together
-          <>
-            <Hero />
-            <Skills />
-            <Experience />
-            <Education />
-            <CertificationsSection />
-            <Contact />
-          </>
-        ) : (
-          // Router Mode: Use routes for navigation
-          <Routes>
-            <Route path="/" element={<Hero />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/certifications" element={<CertificationsSection />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/projects" element={<Projects />} />
-          </Routes>
-        )}
+        
+        {/* Single Page Sections */}
+        <div id="home">
+          <Hero />
+        </div>
+        <div id="skills">
+          <Skills />
+        </div>
+        <div id="projects">
+          <Projects />
+        </div>
+        <div id="experience">
+          <Experience />
+        </div>
+        <div id="education">
+          <Education />
+        </div>
+        <div id="certifications">
+          <CertificationsSection />
+        </div>
+        <div id="contact">
+          <Contact />
+        </div>
       </div>
     </>
   );

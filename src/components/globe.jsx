@@ -33,10 +33,16 @@ const slugs = [
   "figma",
 ];
 
+import { CoolMode } from "./ui/cool-mode";
+
 function IconCloudDemo() {
   return (
     <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg  px-20 pb-20 pt-8 bg-transparent">
-      <IconCloud iconSlugs={slugs} />
+      <CoolMode options={{ particle: "circle", size: 20 }}>
+        <div className="cursor-pointer">
+          <IconCloud iconSlugs={slugs} />
+        </div>
+      </CoolMode>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Meteors from "@/components/ui/meteors";
 import PortfolioPage from "@/pages/About/About";
 import SparklesText from "@/components/ui/sparkles-text";
 import { FlipWords } from "@/components/ui/flip-words";
+import InteractiveTerminal from "@/components/ui/InteractiveTerminal";
 
 // Grid Background - Replacing the HexagonBackground
 const GridBackground = () => {
@@ -268,22 +269,7 @@ const profile = {
 
             {/* Right column - Code window */}
             <div className="w-full lg:w-1/2 animate__animated animate__fadeInDown animate__delay-0.1s">
-              <div className="gradient-border">
-                <div className="code-window bg-[#091121]">
-                  <div className="window-header">
-                    <div className="window-dot bg-red-500"></div>
-                    <div className="window-dot bg-yellow-500"></div>
-                    <div className="window-dot bg-green-500"></div>
-                    <span className="ml-2 text-sm text-gray-400 flex items-center gap-2">
-                      <i className="fas fa-code"></i>
-                      developer.js
-                    </span>
-                  </div>
-                  <pre className="language-javascript">
-                    <code className="language-javascript">{code}</code>
-                  </pre>
-                </div>
-              </div>
+              <InteractiveTerminal initialCode={code} />
             </div>
           </div>
         </section>

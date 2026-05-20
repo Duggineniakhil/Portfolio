@@ -10,42 +10,38 @@ import {
   FaBars,
   FaCertificate,
 } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
-  const location = useLocation();
-  const [activeLink, setActiveLink] = useState(() => {
-    const path = location.pathname.substring(1) || "home";
-    return path;
-  });
+  const [activeLink, setActiveLink] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const navLinks = [
-    { id: "home", icon: FaHome, text: "Home", path: "/" },
-    { id: "skills", icon: FaCode, text: "Skills", path: "/skills" },
-    {
-      id: "experience",
-      icon: FaBriefcase,
-      text: "Experience",
-      path: "/experience",
-    },
-    {
-      id: "education",
-      icon: FaGraduationCap,
-      text: "Education",
-      path: "/education",
-    },
-    { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
-    { id: "certifications", icon: FaCertificate, text: "Certifications", path: "/certifications" },
-    { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
+    { id: "home", icon: FaHome, text: "Home", path: "#home" },
+    { id: "skills", icon: FaCode, text: "Skills", path: "#skills" },
+    { id: "projects", icon: FaLaptopCode, text: "Projects", path: "#projects" },
+    { id: "experience", icon: FaBriefcase, text: "Experience", path: "#experience" },
+    { id: "education", icon: FaGraduationCap, text: "Education", path: "#education" },
+    { id: "certifications", icon: FaCertificate, text: "Certifications", path: "#certifications" },
+    { id: "contact", icon: FaEnvelope, text: "Contact", path: "#contact" },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map(link => document.getElementById(link.id));
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveLink(navLinks[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
@@ -54,10 +50,10 @@ export default function Header() {
           <nav className="bg-gray-900/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
             {/* Mobile Menu Button */}
             <div className="flex justify-between items-center md:hidden px-2">
-              <Link to="/" className="text-white font-bold">Portfolio</Link>
+              <a href="#home" className="text-white font-bold clickable">Portfolio</a>
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white p-2"
+                className="text-white p-2 clickable"
               >
                 <FaBars />
               </button>
@@ -67,14 +63,13 @@ export default function Header() {
             <div className={`${isMenuOpen ? 'block' : 'hidden'} md:block`}>
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-1 lg:gap-2 py-4 md:py-0">
                 {navLinks.map(({ id, icon: Icon, text, path }) => (
-                  <Link
+                  <a
                     key={id}
-                    to={path}
+                    href={path}
                     onClick={() => {
-                      setActiveLink(id);
                       setIsMenuOpen(false);
                     }}
-                    className={`px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
+                    className={`px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium clickable
                       transition-all duration-300 flex items-center gap-2
                       hover:bg-white/10 
                       ${
@@ -90,7 +85,7 @@ export default function Header() {
                       }`}
                     />
                     <span className="inline">{text}</span>
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
