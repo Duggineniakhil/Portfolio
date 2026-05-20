@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { UIProvider } from "./context/UIContext";
 import Lenis from "lenis";
 import "./assets/css/index.css";
 import Experience from "./pages/Experience/Experience";
@@ -39,7 +40,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+<UIProvider>
       <CustomCursor />
       
       <div className="fixed inset-0 z-[-100] pointer-events-none bg-[#04081a]">
@@ -89,6 +90,6 @@ export default function App() {
           <Contact />
         </div>
       </div>
-    </>
+    </UIProvider>
   );
 }
