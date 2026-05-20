@@ -63,26 +63,8 @@ const ExperienceCard = ({
 const ExperienceSection = () => {
   const experiences = [
     {
-      icon: Code2,
-      title: "Full Stack Developer Intern",
-      company: "TechNova Solutions",
-      period: "2025 - Present",
-      description:
-        "Developing highly scalable microservices using Node.js and React. Integrated real-time data processing and optimized database queries in PostgreSQL.",
-      align: "left"
-    },
-    {
-      icon: Cpu,
-      title: "AI/ML Research Assistant",
-      company: "Amrita Vishwa Vidyapeetham",
-      period: "2024 - 2025",
-      description:
-        "Assisted in training Convolutional Neural Networks (CNNs) for medical imaging. Improved model accuracy by 15% using data augmentation and hyperparameter tuning.",
-      align: "right"
-    },
-    {
       icon: Network,
-      title: "Freelance Developer & Designer",
+      title: "Freelance Video Editor & Designer",
       company: "Self-Employed",
       period: "2023 - 2024",
       description:
