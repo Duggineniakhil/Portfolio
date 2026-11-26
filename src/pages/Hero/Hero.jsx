@@ -44,15 +44,15 @@ const GridBackground = () => {
 export default function Hero() {
   const words = [
     "Full Stack Developer",
-    "AI / ML Enthusiast",
-    "Python Developer",
-    "React Developer",
+    "AI / ML Engineer",
+    "Deep Learning Builder",
+    "React & Node.js Developer",
   ];
 
   const [code] = useState(`
 const profile = {
     name: 'Duggineni Akhil',
-    title: 'Full Stack Developer | AI/ML Enthusiast | Problem Solver',
+    title: 'Full Stack Developer | AI/ML Engineer | Problem Solver',
     skills: [
         'Python', 'JavaScript', 'React.js', 'Node.js',
         'Express.js', 'TensorFlow', 'HTML5', 'CSS3', 'REST APIs',
@@ -212,8 +212,9 @@ const profile = {
               {/* Description */}
               <div className="relative mb-8 sm:mb-12 max-w-xl">
                 <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed">
-                  Passionate Full Stack Developer 🚀 | AI/ML Enthusiast 🔧 | Building
-                  intelligent systems and seamless web experiences 💻✨
+                  Final-year Computer Science student at Amrita, building full stack web apps
+                  and deep learning systems, from real-time stock dashboards to medical imaging
+                  models. Open to full-time roles and internships.
                 </p>
               </div>
 
