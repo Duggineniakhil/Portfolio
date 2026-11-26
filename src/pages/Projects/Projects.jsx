@@ -46,12 +46,12 @@ const projects = [
     liveLink: "https://stock-tracker-lime-nu.vercel.app",
   },
   {
-    title: "HealthAI",
-    category: "MEDICAL AI",
-    description: "Chest X-ray screening workstation: DenseNet121 trained on CheXpert for 8 conditions, Grad-CAM heatmaps, a FastAPI backend and a Streamlit UI that generates PDF reports.",
-    src: "health_ai.png",
-    tags: ["TensorFlow", "DenseNet121", "FastAPI", "Streamlit"],
-    githubLink: "https://github.com/Duggineniakhil/HealthAI",
+    title: "ReconAgent",
+    category: "AI AGENT · FINTECH",
+    description: "AI agent that reconciles invoices against bank transactions and Razorpay settlements, handling rounding, date drift and name variants, with live run progress and precision/recall tracking per run.",
+    src: "reconagent.jpg",
+    tags: ["Gemini", "Node.js", "PostgreSQL", "React", "Razorpay API"],
+    githubLink: "https://github.com/Duggineniakhil/ReconAgent",
   },
 ];
 
