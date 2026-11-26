@@ -3,58 +3,55 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "HealthAI",
-    category: "AI / DEEP LEARNING",
-    description: "Built an end-to-end deep learning system for multi-label chest disease detection from X-ray images using EfficientNetB0.",
-    src: "health_ai.png",
-    tags: ["EfficientNetB0", "TensorFlow", "FastAPI"],
-    githubLink: "https://github.com/Duggineniakhil/HealthAI",
-    liveLink: "https://github.com/Duggineniakhil/HealthAI",
-  },
-  {
-    title: "Stock Dashboard",
-    category: "WEB APP",
-    description: "Full-stack stock tracking web application with authentication, watchlists, real-time prices, and email alerts.",
-    src: "stock_dashboard.png",
-    tags: ["React", "Node.js", "Express", "SQLite", "Chart.js"],
-    githubLink: "https://github.com/Duggineniakhil/Stock_Tracker",
-    liveLink: "https://stock-tracker-1-sj4n.onrender.com",
-  },
-  {
-    title: "DAC Shoes",
-    category: "E-COMMERCE",
-    description: "Built a responsive multi-page e-commerce website with core shopping flows, mobile-first UI, and cart logic.",
-    src: "dac_shoes.png",
-    tags: ["HTML5", "CSS3", "JavaScript"],
-    githubLink: "https://github.com/Duggineniakhil/E-commerece-ShoeStore",
-    liveLink: "https://dacshoestore.netlify.app",
-  },
-  {
-    title: "Vectra",
-    category: "MOBILE APP",
-    description: "Full-stack real-time ride-sharing application built with Flutter, Dart, and WebSockets for live driver tracking.",
-    src: "vectra.png",
-    tags: ["Flutter", "Dart", "WebSockets", "Firebase"],
-    githubLink: "https://github.com/M-krizz/Vectra",
-    liveLink: "https://github.com/M-krizz/Vectra",
+    title: "PadelVision",
+    category: "COMPUTER VISION",
+    description: "Turns a single-camera padel match video into player tracking, court heatmaps, rally and shot maps, shot-speed estimates and auto-cut highlight videos, with a dashboard to explore each match.",
+    src: "padel_vision.png",
+    tags: ["YOLO11", "ByteTrack", "OpenCV", "FastAPI", "Python"],
+    githubLink: "https://github.com/Duggineniakhil/PadelVision",
   },
   {
     title: "Oral Cancer AI",
-    category: "MED AI",
-    description: "Advanced deep learning system for Oral Cancer Detection utilizing ConvNeXt and MedSAM architectures.",
+    category: "MEDICAL AI · RESEARCH",
+    description: "Four-class oral histopathology classifier: ConvNeXt-Tiny reaches 92.2% balanced accuracy and 0.985 macro AUC, with MedSAM and U-Net segmentation, Grad-CAM and a shortcut-bias analysis.",
     src: "oral_cancer.png",
-    tags: ["ConvNeXt", "MedSAM", "PyTorch"],
+    tags: ["PyTorch", "ConvNeXt", "MedSAM", "U-Net"],
     githubLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
-    liveLink: "https://github.com/Duggineniakhil/oral-cancer-detection",
   },
   {
-    title: "Taskflow",
-    category: "PRODUCTIVITY",
-    description: "Responsive productivity and task management web app built with TypeScript, React, and modern frontend practices.",
-    src: "taskflow.png",
-    tags: ["TypeScript", "React", "TailwindCSS"],
-    githubLink: "https://github.com/Duggineniakhil/taskflow",
-    liveLink: "https://taskflow-kohl-beta.vercel.app",
+    title: "Annapoorna Link",
+    category: "HACKATHON · SOCIAL IMPACT",
+    description: "Bilingual (English and Telugu) app built for ACE Builders Hackathon 2026 that routes surplus food from caterers and wedding halls to shelters, with volunteer pickups and live status at every step.",
+    src: "annapoorna_link.jpg",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "PWA"],
+    githubLink: "https://github.com/Duggineniakhil/Annapoorna_Link",
+    liveLink: "https://annapoorna-link.vercel.app",
+  },
+  {
+    title: "SmartFill",
+    category: "BROWSER EXTENSION",
+    description: "Chrome extension that fills job applications on Greenhouse, Lever, Workday and more, scores how well you match each role, drafts answers from your CV and tracks every application.",
+    src: "smartfill.png",
+    tags: ["TypeScript", "React", "Chrome Extension", "Playwright"],
+    githubLink: "https://github.com/Duggineniakhil/SmartFill",
+    liveLink: "https://smart-fill-lemon.vercel.app",
+  },
+  {
+    title: "Quotra",
+    category: "FULL STACK · AI",
+    description: "Stock portfolio tracker with live quotes, RSI/SMA charts, S&P 500 benchmarking, background alert jobs, and a Gemini-powered advisor with news sentiment.",
+    src: "quotra.jpg",
+    tags: ["React", "Node.js", "Express", "SQLite", "Gemini"],
+    githubLink: "https://github.com/Duggineniakhil/Stock_Tracker",
+    liveLink: "https://stock-tracker-lime-nu.vercel.app",
+  },
+  {
+    title: "HealthAI",
+    category: "MEDICAL AI",
+    description: "Chest X-ray screening workstation: DenseNet121 trained on CheXpert for 8 conditions, Grad-CAM heatmaps, a FastAPI backend and a Streamlit UI that generates PDF reports.",
+    src: "health_ai.png",
+    tags: ["TensorFlow", "DenseNet121", "FastAPI", "Streamlit"],
+    githubLink: "https://github.com/Duggineniakhil/HealthAI",
   },
 ];
 
@@ -121,18 +118,22 @@ export default function Projects() {
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`${project.title} on GitHub`}
                     className="text-zinc-500 hover:text-white transition-colors"
                   >
                     <i className="fab fa-github text-lg"></i>
                   </a>
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-500 hover:text-white transition-colors"
-                  >
-                    <i className="fas fa-external-link-alt text-lg"></i>
-                  </a>
+                  {project.liveLink && (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} live demo`}
+                      className="text-zinc-500 hover:text-white transition-colors"
+                    >
+                      <i className="fas fa-external-link-alt text-lg"></i>
+                    </a>
+                  )}
                   <a
                     href={project.githubLink}
                     target="_blank"
