@@ -63,13 +63,31 @@ const ExperienceCard = ({
 const ExperienceSection = () => {
   const experiences = [
     {
-      icon: Network,
-      title: "Freelance Video Editor & Designer",
-      company: "Self-Employed",
-      period: "2023 - 2024",
+      icon: Cpu,
+      title: "Hackathon Developer",
+      company: "Team CREED",
+      period: "2026 – Present",
       description:
-        "Produced short-form videos and motion graphics. Transitioned into freelance web development building performant landing pages for local businesses using React and Tailwind CSS.",
-      align: "left"
+        "Build working prototypes end to end under hackathon deadlines. Runner-up at the NitroStack × Amrita University Hackathon for agentic AI and MCP-powered solutions. Built Annapoorna Link, a bilingual surplus-food rescue app, for ACE Builders 2026, and SPANDAN, breakdown prediction for small flour mills, for Tech4Bharat 2026.",
+      align: "left",
+    },
+    {
+      icon: Code2,
+      title: "Independent AI & Full Stack Developer",
+      company: "Self-directed projects",
+      period: "2024 – Present",
+      description:
+        "Design, build and deploy products on my own: PadelVision (computer vision match analytics), SmartFill (a Chrome extension for job applications), Quotra (a stock tracker with a Gemini advisor) and ReconAgent (an AI reconciliation agent). Won Fetch-A-Thon 3.0 for Best Agentverse Deployment.",
+      align: "right",
+    },
+    {
+      icon: Network,
+      title: "Freelance Video Editor & Graphic Designer",
+      company: "Self-Employed",
+      period: "2023 – 2024",
+      description:
+        "Produced short-form videos and motion graphics for clients, handling client communication, revisions and delivery deadlines. Transitioned into freelance web development, building landing pages for local businesses with React and Tailwind CSS.",
+      align: "left",
     },
   ];
 
@@ -83,7 +101,7 @@ const ExperienceSection = () => {
           <div className="flex flex-col items-center space-y-8 mb-20">
             <div className="relative">
               <h2 className="text-5xl md:text-7xl font-black text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-center">
-                Professional Journey
+                Experience
               </h2>
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl rounded-full" />
             </div>

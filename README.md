@@ -25,7 +25,10 @@ Check out the live preview here:
 - **Cinematic Backgrounds**: Dynamic WebGL/OGL animations (SoftAurora) for a premium feel.
 - **Glassmorphism Design**: Modern, sleek UI components with subtle transparency and blur effects.
 - **Fully Responsive**: Optimized for all devices, from mobile to ultra-wide displays.
-- **Project Showcase**: Detailed view of projects with GitHub links and live demos.
+- **Project Showcase**: Featured AI/ML and full stack projects with GitHub links and live demos.
+- **Awards & Certifications**: Hackathon wins and competitive programming results with viewable certificates.
+- **Interactive Terminal**: The hero code window switches to a small terminal (`help`, `skills`, `contact`).
+- **SEO Ready**: Meta description and Open Graph / X card tags for rich link previews.
 - **Interactive Experience**: Smooth scroll animations (Lenis) and interactive UI elements.
 
 ---
