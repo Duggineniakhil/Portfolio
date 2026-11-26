@@ -54,9 +54,9 @@ const profile = {
     name: 'Duggineni Akhil',
     title: 'Full Stack Developer | AI/ML Engineer | Problem Solver',
     skills: [
-        'Python', 'JavaScript', 'React.js', 'Node.js',
-        'Express.js', 'TensorFlow', 'HTML5', 'CSS3', 'REST APIs',
-        'FastAPI', 'Git', 'Machine Learning', 'Computer Vision'
+        'Python', 'TypeScript', 'React', 'Next.js', 'Node.js',
+        'FastAPI', 'PostgreSQL', 'PyTorch', 'OpenCV',
+        'LLM Agents', 'RAG', 'Docker'
     ],
     hardWorker: true,
     quickLearner: true,

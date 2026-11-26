@@ -40,8 +40,8 @@ export default function InteractiveTerminal({ initialCode }) {
           newOutput.push({ type: "system", text: "  hack    - Initiate matrix sequence" });
           break;
         case "skills":
-          newOutput.push({ type: "system", text: "> React, Next.js, Node.js, Python, TensorFlow" });
-          newOutput.push({ type: "system", text: "> MongoDB, PostgreSQL, AWS, Docker, Git" });
+          newOutput.push({ type: "system", text: "> Python, TypeScript, React, Next.js, Node.js, FastAPI" });
+          newOutput.push({ type: "system", text: "> PyTorch, OpenCV, LLM Agents, RAG, PostgreSQL, Docker" });
           break;
         case "contact":
           newOutput.push({ type: "system", text: "> Email: duggineniakhil1@gmail.com" });
