@@ -15,24 +15,37 @@ const EducationSection = () => {
 
   const educationData = [
     {
-      degree: "B.Tech — Computer Science",
-      school: "Amrita Vishwa Vidyapeetham",
+      degree: "B.Tech, Computer Science and Engineering",
+      school: "Amrita Vishwa Vidyapeetham, Coimbatore",
       mascot: "🎓",
-      year: "Current",
-      achievements: ["Focusing on AI/ML", "Full Stack Development"],
-      skills: ["Python", "JavaScript", "C++", "Data Structures", "Algorithms"],
+      year: "2023 – 2027 (expected)",
+      achievements: [
+        "Fetch-A-Thon 3.0 Winner",
+        "NitroStack × Amrita Hackathon Runner-up",
+        "Rank 33, CodeSprint",
+      ],
+      skills: ["Data Structures", "Algorithms", "Machine Learning", "Python", "C++"],
       description:
-        "Pursuing Bachelor of Technology in Computer Science and Engineering with a deep focus on intelligent systems and modern web technologies.",
+        "Final-year Computer Science student focused on AI/ML and full stack development, building computer vision, medical imaging and agentic AI projects alongside coursework.",
     },
     {
-      degree: "Intermediate (Class 12)",
-      school: "Sri Chaitanya Junior College",
+      degree: "Intermediate (Class 12), MPC",
+      school: "Sri Chaitanya Junior College, Vijayawada",
       mascot: "📚",
-      year: "Completed",
-      achievements: ["Score: 93.6%", "Science Stream"],
+      year: "2021 – 2023",
+      achievements: ["Score: 93.6%"],
       skills: ["Mathematics", "Physics", "Chemistry"],
       description:
-        "Completed higher secondary education in the science stream with an excellent academic record.",
+        "Completed higher secondary education in the science stream (Maths, Physics, Chemistry).",
+    },
+    {
+      degree: "SSC (Class 10)",
+      school: "Sri Chaitanya School",
+      mascot: "🏫",
+      year: "2021",
+      achievements: ["Score: 100%"],
+      skills: ["Mathematics", "Science"],
+      description: "Completed secondary school with a perfect score.",
     },
   ];
 
@@ -93,7 +106,7 @@ const EducationSection = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              className={`relative border rounded-xl p-8 transition-all duration-300 bg-gray-900/50 backdrop-blur-sm ${
+              className={`${index === 0 ? "md:col-span-2 " : ""}relative border rounded-xl p-8 transition-all duration-300 bg-gray-900/50 backdrop-blur-sm ${
                 hoveredIndex === index
                   ? "border-teal-500 scale-[1.02]"
                   : "border-blue-400/20"
