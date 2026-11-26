@@ -92,14 +92,14 @@ export default function Contact() {
           {/* Footer Note */}
           <div className="mt-16 text-center">
             <p className="text-zinc-500 font-mono text-sm uppercase tracking-widest">
-              Available for freelance & full-time roles
+              Open to full-time roles &amp; internships
             </p>
             <div className="mt-8 flex justify-center gap-6">
                <a href="https://github.com/Duggineniakhil" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors text-2xl">
                 <i className="fab fa-github"></i>
               </a>
               <a href="https://x.com/AkhilDuggineni" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors text-2xl">
-                <i className="fab fa-twitter"></i>
+                <i className="fab fa-x-twitter"></i>
               </a>
             </div>
           </div>

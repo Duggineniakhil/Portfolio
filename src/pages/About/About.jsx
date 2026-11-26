@@ -1,5 +1,4 @@
 import HeroImg from "@/assets/images/akhil_image.jpeg";
-import OlovaLogo from "@/assets/images/olova.png";
 
 export default function About() {
   return (
@@ -32,8 +31,9 @@ export default function About() {
                 , I'm dedicated to delivering high-quality, impactful projects.
               </p>
               <p className="text-white">
-                My focus is on making web development faster, easier, and accessible to all developers.
-                I thrive on solving complex problems, from building real-time dashboards to training convolutional neural networks.
+                I&apos;m pursuing my B.Tech in Computer Science at Amrita Vishwa Vidyapeetham and I&apos;m open to
+                full-time roles and internships. I enjoy solving hard problems end to end, from building real-time
+                stock dashboards to training deep learning models for medical imaging.
               </p>
 
               <div className="pt-6">
