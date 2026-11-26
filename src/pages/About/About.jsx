@@ -15,7 +15,7 @@ export default function About() {
                 <img
                   src={HeroImg}
                   className="rounded-[15px] shadow block"
-                  alt="payments illustration"
+                  alt="Portrait of Duggineni Akhil"
                   width={1207}
                   height={929}
                 />

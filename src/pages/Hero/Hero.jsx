@@ -66,8 +66,8 @@ const profile = {
         return (
             this.hardWorker &&
             this.problemSolver &&
-            this.skills.length >= 5 &&
-            this.yearsOfExperience >= 3
+            this.quickLearner &&
+            this.skills.length >= 5
         );
     }
 };

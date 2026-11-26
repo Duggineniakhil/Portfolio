@@ -45,7 +45,7 @@ export default function InteractiveTerminal({ initialCode }) {
           break;
         case "contact":
           newOutput.push({ type: "system", text: "> Email: duggineniakhil1@gmail.com" });
-          newOutput.push({ type: "system", text: "> LinkedIn: linkedin.com/in/akhil-duggineni" });
+          newOutput.push({ type: "system", text: "> LinkedIn: linkedin.com/in/akhil-duggineni-b29a0529b" });
           break;
         case "clear":
           setOutput([]);

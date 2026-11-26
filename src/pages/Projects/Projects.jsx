@@ -16,7 +16,7 @@ const projects = [
     category: "WEB APP",
     description: "Full-stack stock tracking web application with authentication, watchlists, real-time prices, and email alerts.",
     src: "stock_dashboard.png",
-    tags: ["React", "Node.js", "MongoDB", "Auth0"],
+    tags: ["React", "Node.js", "Express", "SQLite", "Chart.js"],
     githubLink: "https://github.com/Duggineniakhil/Stock_Tracker",
     liveLink: "https://stock-tracker-1-sj4n.onrender.com",
   },
