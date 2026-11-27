@@ -44,19 +44,19 @@ const GridBackground = () => {
 export default function Hero() {
   const words = [
     "Full Stack Developer",
-    "AI / ML Engineer",
-    "Deep Learning Builder",
-    "React & Node.js Developer",
+    "Applied AI Engineer",
+    "AI Agent Builder",
+    "Computer Vision Developer",
   ];
 
   const [code] = useState(`
 const profile = {
     name: 'Duggineni Akhil',
-    title: 'Full Stack Developer | AI/ML Engineer | Problem Solver',
+    title: 'Full-Stack & Applied-AI Engineer',
     skills: [
         'Python', 'TypeScript', 'React', 'Next.js', 'Node.js',
         'FastAPI', 'PostgreSQL', 'PyTorch', 'OpenCV',
-        'LLM Agents', 'RAG', 'Docker'
+        'LLM Agents', 'RAG', 'MCP', 'Docker'
     ],
     hardWorker: true,
     quickLearner: true,
@@ -205,9 +205,9 @@ const profile = {
               {/* Description */}
               <div className="relative mb-8 sm:mb-12 max-w-xl">
                 <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed">
-                  Final-year Computer Science student at Amrita, building full stack web apps
-                  and deep learning systems, from real-time stock dashboards to medical imaging
-                  models. Open to full-time roles and internships.
+                  Full-stack and applied-AI engineer (B.Tech CSE, 2027) shipping LLM agents,
+                  computer-vision pipelines and production web apps with tests and live
+                  deployments. Open to internships from Jan 2027 and full-time roles.
                 </p>
               </div>
 
@@ -237,7 +237,7 @@ const profile = {
                 >
                   <span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 border border-gray-700/50 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-gray-800 group-hover:to-gray-700">
                     <span className="relative flex items-center justify-center gap-2 text-gray-300 font-medium group-hover:text-white">
-                      <span>Get Resume</span>
+                      <span>View Resume</span>
                       <i className="fas fa-eye transform transition-all duration-300 group-hover:translate-y-1"></i>
                     </span>
                   </span>

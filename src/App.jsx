@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { UIProvider } from "./context/UIContext";
 import Lenis from "lenis";
+import { MotionConfig } from "framer-motion";
 import "./assets/css/index.css";
 import Experience from "./pages/Experience/Experience";
 import Contact from "./pages/Contact/Contact";
@@ -41,6 +42,7 @@ export default function App() {
 
   return (
 <UIProvider>
+    <MotionConfig reducedMotion="user">
       <CustomCursor />
       
       <div className="fixed inset-0 z-[-100] pointer-events-none bg-[#04081a]">
@@ -90,6 +92,7 @@ export default function App() {
           <Contact />
         </div>
       </div>
+    </MotionConfig>
     </UIProvider>
   );
 }

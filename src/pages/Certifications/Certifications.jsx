@@ -101,8 +101,8 @@ const CertificationsSection = () => {
       icon: Trophy,
     },
     {
-      title: "NitroStack × Amrita University Hackathon",
-      result: "Runner-up · Team CREED",
+      title: "NitroStack AI Agentic Hackathon",
+      result: "2nd place · Team CREED",
       issuer: "NitroStack × Amrita Vishwa Vidyapeetham",
       date: "Jul 2026",
       preview: NitroStackCert,
@@ -137,7 +137,7 @@ const CertificationsSection = () => {
       detail: "Manufacturing & Industry theme, predicting machine breakdowns.",
       project: "SPANDAN, offline breakdown prediction for small flour mills",
       links: [
-        { label: "Docs", href: "https://github.com/Duggineniakhil/SPANDAN", type: "github" },
+        { label: "Code", href: "https://github.com/Duggineniakhil/SPANDAN", type: "github" },
       ],
     },
   ];

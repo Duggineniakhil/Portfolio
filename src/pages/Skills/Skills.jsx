@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import IconCloudDemo from "@/components/globe";
@@ -8,7 +8,12 @@ import {
   SiTypescript,
   SiJavascript,
   SiDart,
-  SiCplusplus,
+  SiNestjs,
+  SiSocketdotio,
+  SiJsonwebtokens,
+  SiRedis,
+  SiGithubactions,
+  SiKeras,
   SiPostgresql,
   SiReact,
   SiNextdotjs,
@@ -86,7 +91,6 @@ const SkillsSection = () => {
         { name: "JavaScript", icon: <SiJavascript className="w-4 h-4 text-[#F7DF1E]" /> },
         { name: "SQL", icon: <SiPostgresql className="w-4 h-4 text-[#4169E1]" /> },
         { name: "Dart", icon: <SiDart className="w-4 h-4 text-[#0175C2]" /> },
-        { name: "C++", icon: <SiCplusplus className="w-4 h-4 text-[#00599C]" /> },
       ],
     },
     {
@@ -99,6 +103,7 @@ const SkillsSection = () => {
         { name: "Tailwind CSS", icon: <SiTailwindcss className="w-4 h-4 text-[#38B2AC]" /> },
         { name: "Vite", icon: <SiVite className="w-4 h-4 text-[#646CFF]" /> },
         { name: "Flutter", icon: <SiFlutter className="w-4 h-4 text-[#02569B]" /> },
+        { name: "Riverpod", icon: <SiFlutter className="w-4 h-4 text-[#42A5F5]" /> },
         { name: "Chart.js", icon: <SiChartdotjs className="w-4 h-4 text-[#FF6384]" /> },
       ],
     },
@@ -111,6 +116,11 @@ const SkillsSection = () => {
         { name: "Express", icon: <SiExpress className="w-4 h-4 text-[#FFFFFF]" /> },
         { name: "FastAPI", icon: <SiFastapi className="w-4 h-4 text-[#009688]" /> },
         { name: "PostgreSQL", icon: <SiPostgresql className="w-4 h-4 text-[#4169E1]" /> },
+        { name: "NestJS", icon: <SiNestjs className="w-4 h-4 text-[#E0234E]" /> },
+        { name: "Socket.IO", icon: <SiSocketdotio className="w-4 h-4 text-[#FFFFFF]" /> },
+        { name: "JWT Auth", icon: <SiJsonwebtokens className="w-4 h-4 text-[#FB015B]" /> },
+        { name: "PostGIS", icon: <SiPostgresql className="w-4 h-4 text-[#5CAE58]" /> },
+        { name: "Redis", icon: <SiRedis className="w-4 h-4 text-[#DC382D]" /> },
         { name: "Prisma", icon: <SiPrisma className="w-4 h-4 text-[#FFFFFF]" /> },
         { name: "SQLite", icon: <SiSqlite className="w-4 h-4 text-[#44A8E0]" /> },
         { name: "Firebase", icon: <SiFirebase className="w-4 h-4 text-[#FFCA28]" /> },
@@ -128,6 +138,8 @@ const SkillsSection = () => {
         { name: "OpenCV", icon: <SiOpencv className="w-4 h-4 text-[#5C3EE8]" /> },
         { name: "scikit-learn", icon: <SiScikitlearn className="w-4 h-4 text-[#F7931E]" /> },
         { name: "Hugging Face", icon: <SiHuggingface className="w-4 h-4 text-[#FFD21E]" /> },
+        { name: "Keras", icon: <SiKeras className="w-4 h-4 text-[#D00000]" /> },
+        { name: "Grad-CAM", icon: <BsGrid1X2 className="w-4 h-4 text-[#F59E0B]" /> },
         { name: "Pandas", icon: <SiPandas className="w-4 h-4 text-[#E70488]" /> },
       ],
     },
@@ -141,6 +153,8 @@ const SkillsSection = () => {
         { name: "Gemini API", icon: <SiGooglegemini className="w-4 h-4 text-[#8E75B2]" /> },
         { name: "Llama via Groq", icon: <SiMeta className="w-4 h-4 text-[#0467DF]" /> },
         { name: "FAISS", icon: <BsGrid1X2 className="w-4 h-4 text-[#60A5FA]" /> },
+        { name: "MCP", icon: <BsGrid1X2 className="w-4 h-4 text-[#22D3EE]" /> },
+        { name: "Sentence Transformers", icon: <SiHuggingface className="w-4 h-4 text-[#FFD21E]" /> },
         { name: "LLM Evaluation", icon: <BsGrid1X2 className="w-4 h-4 text-[#34D399]" /> },
       ],
     },
@@ -156,6 +170,9 @@ const SkillsSection = () => {
         { name: "Render", icon: <SiRender className="w-4 h-4 text-[#46E3B7]" /> },
         { name: "Vitest", icon: <SiVitest className="w-4 h-4 text-[#6E9F18]" /> },
         { name: "Jest", icon: <SiJest className="w-4 h-4 text-[#C21325]" /> },
+        { name: "Docker Compose", icon: <SiDocker className="w-4 h-4 text-[#2496ED]" /> },
+        { name: "GitHub Actions", icon: <SiGithubactions className="w-4 h-4 text-[#2088FF]" /> },
+        { name: "Supertest", icon: <FlaskConical className="w-4 h-4 text-[#A3E635]" /> },
         { name: "Playwright", icon: <FlaskConical className="w-4 h-4 text-[#2EAD33]" /> },
         { name: "pytest", icon: <SiPytest className="w-4 h-4 text-[#0A9EDC]" /> },
       ],
@@ -173,13 +190,20 @@ const SkillsSection = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <SkillCard
-              key={index}
-              icon={category.icon}
-              title={category.title}
-              skills={category.skills}
-              color={category.color}
-            />
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.12, ease: "easeOut" }}
+            >
+              <SkillCard
+                icon={category.icon}
+                title={category.title}
+                skills={category.skills}
+                color={category.color}
+              />
+            </motion.div>
           ))}
         </div>
       </section>

@@ -20,10 +20,10 @@ const EducationSection = () => {
       year: "2023 – 2027 (expected)",
       achievements: [
         "Fetch-A-Thon 3.0 Winner",
-        "NitroStack × Amrita Hackathon Runner-up",
+        "2nd place, NitroStack Hackathon",
         "Rank 33, CodeSprint",
       ],
-      skills: ["Data Structures", "Algorithms", "Machine Learning", "Python", "C++"],
+      skills: ["Data Structures & Algorithms", "DBMS", "Operating Systems", "Computer Networks", "Machine Learning"],
       description:
         "Final-year Computer Science student focused on AI/ML and full stack development, building computer vision, medical imaging and agentic AI projects alongside coursework.",
     },

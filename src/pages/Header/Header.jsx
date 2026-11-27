@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import {
   FaHome,
   FaLaptopCode,
-  FaUser,
+  FaFileAlt,
   FaBriefcase,
   FaGraduationCap,
   FaCode,
@@ -14,6 +15,8 @@ import {
 export default function Header() {
   const [activeLink, setActiveLink] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
   const navLinks = [
     { id: "home", icon: FaHome, text: "Home", path: "#home" },
@@ -21,7 +24,7 @@ export default function Header() {
     { id: "projects", icon: FaLaptopCode, text: "Projects", path: "#projects" },
     { id: "experience", icon: FaBriefcase, text: "Experience", path: "#experience" },
     { id: "education", icon: FaGraduationCap, text: "Education", path: "#education" },
-    { id: "certifications", icon: FaCertificate, text: "Certifications", path: "#certifications" },
+    { id: "certifications", icon: FaCertificate, text: "Awards", path: "#certifications" },
     { id: "contact", icon: FaEnvelope, text: "Contact", path: "#contact" },
   ];
 
@@ -45,6 +48,11 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{ scaleX: progress }}
+        className="fixed top-0 left-0 right-0 h-[3px] origin-left z-[60] bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500"
+      />
       <div className="md:fixed md:top-4 md:left-1/2 md:transform md:-translate-x-1/2 w-full md:w-auto">
         <div className="p-[2px] md:rounded-full bg-gradient-to-r from-emerald-400 via-cyan-500 to-indigo-500 animate-gradient-x">
           <nav className="bg-gray-900/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
@@ -87,6 +95,16 @@ export default function Header() {
                     <span className="inline">{text}</span>
                   </a>
                 ))}
+                <a
+                  href="/Akhil_Duggineni_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-3 py-2 md:py-1.5 md:ml-1 rounded-lg md:rounded-full text-sm font-semibold clickable flex items-center gap-2 bg-cyan-400 text-gray-900 hover:bg-cyan-300 transition-colors duration-300"
+                >
+                  <FaFileAlt className="text-base" />
+                  <span className="inline">Resume</span>
+                </a>
               </div>
             </div>
           </nav>

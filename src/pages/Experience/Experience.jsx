@@ -68,7 +68,7 @@ const ExperienceSection = () => {
       company: "Team CREED",
       period: "2026 – Present",
       description:
-        "Build working prototypes end to end under hackathon deadlines. Runner-up at the NitroStack × Amrita University Hackathon for agentic AI and MCP-powered solutions. Built Annapoorna Link, a bilingual surplus-food rescue app, for ACE Builders 2026, and SPANDAN, breakdown prediction for small flour mills, for Tech4Bharat 2026.",
+        "Build working prototypes end to end under hackathon deadlines. Took 2nd place at the NitroStack AI Agentic Hackathon with SymBioForge, an 8-agent MCP platform built by a 4-member team. Built Annapoorna Link, a bilingual surplus-food rescue app, for ACE Builders 2026, and SPANDAN, breakdown prediction for small flour mills, for Tech4Bharat 2026.",
       align: "left",
     },
     {
@@ -77,7 +77,7 @@ const ExperienceSection = () => {
       company: "Self-directed projects",
       period: "2024 – Present",
       description:
-        "Design, build and deploy products on my own: PadelVision (computer vision match analytics), SmartFill (a Chrome extension for job applications), Quotra (a stock tracker with a Gemini advisor) and ReconAgent (an AI reconciliation agent). Won Fetch-A-Thon 3.0 for Best Agentverse Deployment.",
+        "Design, build, test and deploy products on my own: LLM agents with evaluation harnesses (ReconAgent, AmazonHelp), an 11-stage computer-vision pipeline (PadelVision), and production web apps with JWT auth, CI and live deployments (Quotra, SmartFill). Won Fetch-A-Thon 3.0 for Best Agentverse Deployment.",
       align: "right",
     },
     {

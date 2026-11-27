@@ -34,14 +34,38 @@ export default function InteractiveTerminal({ initialCode }) {
       switch (cmd) {
         case "help":
           newOutput.push({ type: "system", text: "Available commands:" });
-          newOutput.push({ type: "system", text: "  skills  - Show core skills" });
-          newOutput.push({ type: "system", text: "  contact - Display contact info" });
-          newOutput.push({ type: "system", text: "  clear   - Clear terminal" });
-          newOutput.push({ type: "system", text: "  hack    - Initiate matrix sequence" });
+          newOutput.push({ type: "system", text: "  about    - Who I am" });
+          newOutput.push({ type: "system", text: "  skills   - Show core skills" });
+          newOutput.push({ type: "system", text: "  projects - Featured projects" });
+          newOutput.push({ type: "system", text: "  awards   - Hackathon results" });
+          newOutput.push({ type: "system", text: "  resume   - Open my resume" });
+          newOutput.push({ type: "system", text: "  contact  - Display contact info" });
+          newOutput.push({ type: "system", text: "  clear    - Clear terminal" });
+          newOutput.push({ type: "system", text: "  hack     - Initiate matrix sequence" });
           break;
         case "skills":
-          newOutput.push({ type: "system", text: "> Python, TypeScript, React, Next.js, Node.js, FastAPI" });
-          newOutput.push({ type: "system", text: "> PyTorch, OpenCV, LLM Agents, RAG, PostgreSQL, Docker" });
+          newOutput.push({ type: "system", text: "> Python, TypeScript, React, Next.js, Node.js, NestJS, FastAPI" });
+          newOutput.push({ type: "system", text: "> LLM Agents, RAG, MCP, PyTorch, OpenCV, PostgreSQL, Docker" });
+          break;
+        case "about":
+          newOutput.push({ type: "system", text: "> Full-stack & applied-AI engineer, B.Tech CSE @ Amrita (2027)" });
+          newOutput.push({ type: "system", text: "> Available for internships from Jan 2027" });
+          break;
+        case "projects":
+          newOutput.push({ type: "system", text: "> PadelVision    - 11-stage CV pipeline for padel matches" });
+          newOutput.push({ type: "system", text: "> SymBioForge    - 8-agent MCP platform (2nd place)" });
+          newOutput.push({ type: "system", text: "> ReconAgent     - LLM agent for financial reconciliation" });
+          newOutput.push({ type: "system", text: "> Quotra         - AI stock tracker, live on Vercel" });
+          newOutput.push({ type: "system", text: "> Scroll down to /Projects for all 13" });
+          break;
+        case "awards":
+          newOutput.push({ type: "system", text: "> Winner   - Fetch-A-Thon 3.0, Best Agentverse Deployment" });
+          newOutput.push({ type: "system", text: "> 2nd      - NitroStack AI Agentic Hackathon" });
+          newOutput.push({ type: "system", text: "> Rank 33  - CodeSprint, CodeClash final round" });
+          break;
+        case "resume":
+          newOutput.push({ type: "system", text: "> Opening resume in a new tab..." });
+          window.open("/Akhil_Duggineni_Resume.pdf", "_blank", "noopener");
           break;
         case "contact":
           newOutput.push({ type: "system", text: "> Email: duggineniakhil1@gmail.com" });

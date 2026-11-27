@@ -92,7 +92,7 @@ export default function Contact() {
           {/* Footer Note */}
           <div className="mt-16 text-center">
             <p className="text-zinc-500 font-mono text-sm uppercase tracking-widest">
-              Open to full-time roles &amp; internships
+              Available for internships from Jan 2027 &amp; open to full-time roles
             </p>
             <div className="mt-8 flex justify-center gap-6">
                <a href="https://github.com/Duggineniakhil" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors text-2xl">
